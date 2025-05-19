@@ -68,10 +68,15 @@ func start():
 	]).as_tween(self)
 
 func _input(event: InputEvent) -> void:
-	if not Engine.is_editor_hint() and event.is_action_pressed(&"confirm") and can_continue:
-		can_continue = false
-		on_confirm.emit()
-		accept_event()
+	if Engine.is_editor_hint():
+		return
+	if not can_continue:
+		return
+	if event is InputEventKey:
+		if event.pressed and event.keycode == KEY_Z:
+			can_continue = false
+			on_confirm.emit()
+			accept_event()
 
 func calculate_minimum_size() -> Vector2:
 	if not is_node_ready():

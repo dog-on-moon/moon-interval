@@ -45,10 +45,8 @@ func start_game():
 	var results: Container = game_machine.stop()
 	add_child(results)
 	results.visible = true
-	await any_key_pressed
-	label_clone.queue_free()
-	results.queue_free()
-	start_game()
+	await get_tree().create_timer(3.0).timeout
+	get_parent().queue_free()
 
 func _input(event: InputEvent) -> void:
 	if event is InputEventKey:

@@ -1,7 +1,7 @@
 [gd_scene load_steps=17 format=3 uid="uid://ihnrxutdfhnh"]
 
-[ext_resource type="Script" path="res://demos/demo.gd" id="1_1ksfv"]
-[ext_resource type="Script" path="res://demos/cooking/cook_master.gd" id="2_ca368"]
+[ext_resource type="Script" uid="uid://dysw2a854eddf" path="res://demos/demo.gd" id="1_1ksfv"]
+[ext_resource type="Script" uid="uid://4858ns3plp7r" path="res://demos/cooking/cook_master.gd" id="2_ca368"]
 [ext_resource type="AudioStream" uid="uid://bfxqw72ykpw1h" path="res://demos/cooking/bees.mp3" id="2_wcvvp"]
 [ext_resource type="AudioStream" uid="uid://dd2otci1i1pdx" path="res://demos/cooking/song.mp3" id="3_be4c5"]
 [ext_resource type="PackedScene" uid="uid://b8k7omxcxfluk" path="res://demos/cooking/ingredient_button.tscn" id="4_inp7m"]
@@ -61,7 +61,7 @@ outline_color = Color(0.25, 0.133333, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_dd2h2"]
 font_size = 81
-outline_size = 30
+outline_size = 47
 outline_color = Color(0.25, 0.229, 0.11, 1)
 shadow_color = Color(1, 0, 0, 0)
 
@@ -198,7 +198,7 @@ color = Color(0.09, 0.0225, 0.0225, 1)
 
 [node name="LightMachine" type="Node2D" parent="CookMaster/World"]
 position = Vector2(576, 324)
-rotation = 1773.61
+rotation = 1820.66
 script = SubResource("GDScript_peeba")
 
 [node name="PointLight2D" type="PointLight2D" parent="CookMaster/World/LightMachine"]
@@ -306,7 +306,7 @@ offset_right = 96.0
 offset_bottom = -98.0
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(2.08041, 2.08041)
+scale = Vector2(2.02233, 2.02233)
 pivot_offset = Vector2(99, 12)
 text = "Press any key to cook"
 horizontal_alignment = 1
@@ -337,19 +337,16 @@ grow_horizontal = 0
 layout_mode = 2
 txt = "EGG COEFFICIENT:"
 color = Color(1, 0.22, 0.22, 1)
-cracked = false
 
 [node name="Stupid4" parent="CookMaster/Control2/StupidContainer" instance=ExtResource("4_wf73i")]
 layout_mode = 2
 txt = "BREAD POWER:     "
 color = Color(0.519, 1, 0.22, 1)
-cracked = false
 
 [node name="Stupid5" parent="CookMaster/Control2/StupidContainer" instance=ExtResource("4_wf73i")]
 layout_mode = 2
 txt = "SALT FUSION...:      "
 color = Color(0.22, 0.272, 1, 1)
-cracked = false
 
 [node name="Label" type="Label" parent="CookMaster/Control2"]
 layout_mode = 1
