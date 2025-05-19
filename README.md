@@ -105,6 +105,6 @@ The Godot project also comes with a couple of demos.
 
 ## Installation
 
-This repository contains the plugin for v4.3. Copy the contents of the `addons` folder into the `addons` folder in your own Godot project. Both `intervals` and `graphedit2` are required. Be sure to enable both plugins from Project Settings.
+This repository contains the plugin for v4.4. Copy the contents of the `addons` folder into the `addons` folder in your own Godot project. Both `moon-interval` and `graphedit2` are required. Be sure to enable both plugins from Project Settings.
 
 For v4.2.2 support, please install the repository from [vabrador's fork.](https://github.com/vabrador/moon-interval/tree/backport-4.2)
