@@ -25,7 +25,7 @@ An ActiveInterval is a RefCounted container for a Tween. Upon losing reference, 
 
 This can be used to automatically prevent multiple of the same kind of Tween from running in code.
 
-```
+```gdscript
 ## All ActiveIntervals must have a reference to them stored,
 ## otherwise they will be immediately cleaned up!!
 var _flash_tween: ActiveInterval
