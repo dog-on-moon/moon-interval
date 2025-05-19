@@ -19,7 +19,8 @@ signal step_finished(idx: int)
 var autofinish := false
 
 ## The owner node in charge of the Tween held by the ActiveInterval.
-var owner: Object
+var owner: Node
+
 ## The original interval that created this ActiveInterval.
 var source_interval: Interval
 
@@ -34,13 +35,11 @@ var time_remaining: float:
 ## The tween created and contained by this ActiveInterval
 var tween: Tween
 
-func _init(_owner: Object, _si: Interval, _tween: Tween, _autofinish := false) -> void:
+func _init(_owner: Node, _si: Interval, _tween: Tween, _autofinish := false) -> void:
 	owner = _owner
 	source_interval = _si
 	tween = _tween
 	autofinish = _autofinish
-	set_emit_freeing(true)
-	freeing.connect(_kill_tween.bind(tween, duration))
 	tween.finished.connect(finished.emit)
 	tween.loop_finished.connect(loop_finished.emit)
 	tween.step_finished.connect(step_finished.emit)
@@ -167,3 +166,7 @@ func set_loops(loops: int = 0) -> ActiveInterval:
 	return self
 
 #endregion
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		_kill_tween(tween, duration)
