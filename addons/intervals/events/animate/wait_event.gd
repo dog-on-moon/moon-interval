@@ -22,5 +22,5 @@ static func get_graph_node_title() -> String:
 	return "Wait"
 
 func get_graph_node_description(_edit: GraphEdit, _element: GraphElement) -> String:
-	return "[b]Duration:[/b] %s seconds" % duration
+	return "[b]Duration:[/b] %s seconds" % snappedf(duration, 0.001)
 #endregion

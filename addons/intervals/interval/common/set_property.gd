@@ -14,5 +14,5 @@ func _init(p_object: Object = null,
 	property = p_property
 	value = p_value
 
-func _onto_tween(tween: Tween):
-	tween.tween_callback(func (): object.set(property, value))
+func _onto_tween(_owner: Node, tween: Tween):
+	tween.tween_callback(object.set.bind(property, value))

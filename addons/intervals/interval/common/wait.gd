@@ -8,5 +8,8 @@ class_name Wait
 func _init(p_time := 0.0) -> void:
 	time = p_time
 
-func _onto_tween(tween: Tween):
+func _onto_tween(_owner: Node, tween: Tween):
 	tween.tween_interval(time)
+
+func get_duration() -> float:
+	return time

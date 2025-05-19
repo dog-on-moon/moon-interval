@@ -10,3 +10,6 @@ var intervals: Array
 
 func _init(p_intervals: Array = []) -> void:
 	intervals = p_intervals
+
+func get_duration() -> float:
+	return DogUtils.sum_array(intervals.map(func(x: Interval): return x.get_duration())) if intervals else 0.0

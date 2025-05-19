@@ -1,7 +1,7 @@
 [gd_scene load_steps=4 format=3 uid="uid://denrfwms0xkc7"]
 
-[ext_resource type="Script" path="res://addons/intervals/editor/multi_event_editor.gd" id="1_8w3a3"]
-[ext_resource type="Script" path="res://addons/intervals/editor/multi_event_graph_edit.gd" id="5_vb6tf"]
+[ext_resource type="Script" uid="uid://2337ws3vaecv" path="res://addons/intervals/editor/multi_event_editor.gd" id="1_8w3a3"]
+[ext_resource type="Script" uid="uid://ca8nlkbok27c4" path="res://addons/intervals/editor/multi_event_graph_edit.gd" id="5_vb6tf"]
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c312x"]
 

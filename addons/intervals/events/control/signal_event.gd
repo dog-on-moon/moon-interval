@@ -20,7 +20,7 @@ var _editor_owner: Node = null
 
 func _get_interval(_owner: Node, _state: Dictionary) -> Interval:
 	var node: Node = _owner.get_node(node_path)
-	return Connect.new(node[signal_name], done.emit, CONNECT_ONE_SHOT, true)
+	return Connect.new(node[signal_name], done.emit, CONNECT_ONE_SHOT)
 
 #region Base Editor Overrides
 static func get_graph_dropdown_category() -> String:
@@ -48,7 +48,7 @@ func _editor_ready(_edit: GraphEdit, _element: GraphElement):
 		func (): return FuncEvent._editor_get_target_node(node_path, _editor_owner),
 		func (): return _editor_get_substring(),
 		_element,
-		preload("res://addons/graphedit2/icons/Signals.png"),
+		preload("uid://bu4w8hqwh8h3m"),
 		_editor_find_node_script
 	)
 #endregion

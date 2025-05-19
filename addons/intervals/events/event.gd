@@ -81,7 +81,7 @@ func _editor_flatten_default_label() -> bool:
 #region GraphElement overrides
 ## The icon that the element uses in the dropdown.
 static func get_graph_dropdown_icon() -> Texture2D:
-	return preload("res://addons/intervals/icons/event.png")
+	return preload("uid://c55jdycqxnso6")
 #endregion
 
 #region Helpers

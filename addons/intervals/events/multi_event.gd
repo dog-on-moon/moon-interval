@@ -11,7 +11,7 @@ class_name MultiEvent
 @export_storage var cycles := false
 
 ## When true, all started events will log their properties to the terminal.
-@export_storage var debug := false
+@export var debug := false
 
 ## Whether or not we have completed this MultiEvent.
 var completed := false
@@ -20,7 +20,7 @@ var completed := false
 var active_branches := 0
 
 ## All events that have been started.
-var started_events: Array[Event] = []
+var started_events: Array = []
 
 ## The last event we've finished.
 var last_event: Event = null
@@ -53,13 +53,17 @@ func _start_branch(event: Event, _owner: Node, _state: Dictionary, count_branch 
 	if count_branch:
 		active_branches += 1
 	if debug:
-		event.print_debug_info()
+		print('--- START "%s"' % event)
+		# event.print_debug_info()
 	started_events.append(event)
 	event.play(_owner, _end_branch.bind(event, _owner, _state), _state)
 
 ## Called when an event branch is complete.
 func _end_branch(event: Event, _owner: Node, _state: Dictionary):
 	last_event = event
+	
+	if debug:
+		print('--- END "%s"' % event)
 	
 	## Perform all connecting branches.
 	for connected_event: Event in get_event_connections(event):
@@ -72,9 +76,9 @@ func _end_branch(event: Event, _owner: Node, _state: Dictionary):
 		_finish()
 
 ## Determines the events that comes after a given event.
-func get_event_connections(event: Event) -> Array[Event]:
+func get_event_connections(event: Event) -> Array:
 	## Get connection information about the event.
-	var ret_events: Array[Event] = []
+	var ret_events: Array = []
 	var branch_idx := event.get_branch_index()
 	var event_outputs: Dictionary = editor_data.get_resource_outputs(event)
 	## Use the requested branch index if defined.
@@ -168,7 +172,7 @@ func _editor_ready(edit: GraphEdit, element: GraphElement):
 	## Inspecting a MultiEvent = ensure that we open it in the editor
 	var node: GraphNode2 = element
 	node.inspect_button.pressed.connect(func (): edit.multi_event_editor.multi_event = self)
-	node.inspect_button.icon = preload("res://addons/graphedit2/icons/Object.png")
+	node.inspect_button.icon = preload("uid://dogu5nl2t0e3o")
 
 static func get_graph_node_title() -> String:
 	return "MultiEvent"
@@ -179,3 +183,8 @@ static func get_graph_node_color() -> Color:
 func get_graph_node_description(_edit: GraphEdit, _element: GraphElement) -> String:
 	return "[b][center]Sub-Events: %s" % (editor_data.resources.size() if editor_data.resources else 0)
 #endregion
+
+func clone(deep := false) -> MultiEvent:
+	var copy: MultiEvent = duplicate(true)
+	copy.editor_data = editor_data.clone(deep)
+	return copy

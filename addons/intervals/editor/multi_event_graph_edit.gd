@@ -1,7 +1,7 @@
 @tool
 extends GraphEdit2
 
-const MultiEventEditor = preload("res://addons/intervals/editor/multi_event_editor.gd")
+const MultiEventEditor = preload("uid://2337ws3vaecv")
 
 @onready var multi_event_editor: MultiEventEditor = get_parent()
 

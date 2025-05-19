@@ -3,7 +3,6 @@ extends Event
 class_name EndMultiEvent
 ## A special event that instantly terminates a MultiEvent.
 
-
 #region Branching Logic
 func get_branch_names() -> Array[String]:
 	return []

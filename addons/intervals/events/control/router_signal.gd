@@ -48,7 +48,7 @@ func _editor_ready(_edit: GraphEdit, _element: GraphElement):
 		func (): return FuncEvent._editor_get_target_node(node_path, _editor_owner),
 		func (): return _editor_get_substring(),
 		_element,
-		preload("res://addons/graphedit2/icons/Signals.png"),
+		preload("uid://bu4w8hqwh8h3m"),
 		SignalEvent._editor_find_node_script
 	)
 

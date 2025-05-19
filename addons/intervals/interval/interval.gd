@@ -11,12 +11,22 @@ class_name Interval
 
 ## Implements the interval onto a specified tween.
 ## Subclasses must implement this function.
-func _onto_tween(tween: Tween):
+func _onto_tween(_owner: Node, tween: Tween):
 	assert(false, "Subclasses must implement this function.")
 
 ## Converts the Interval into an active Tween.
 ## [param _owner] is the Node that the Tween is bound to.
 func as_tween(_owner: Node) -> Tween:
 	var tween := _owner.create_tween()
-	_onto_tween(tween)
+	_onto_tween(_owner, tween)
 	return tween
+
+## Converts the Interval into an active INTERVAL.
+## [param _owner] is the Node that the ActiveInterval is bound to.
+func start(_owner: Node, autofinish := false) -> ActiveInterval:
+	var tween := as_tween(_owner)
+	var ai := ActiveInterval.new(_owner, self, tween, autofinish)
+	return ai
+
+func get_duration() -> float:
+	return 0.0

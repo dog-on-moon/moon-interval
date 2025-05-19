@@ -15,7 +15,7 @@ var _editor_owner: Node = null
 
 func _get_interval(_owner: Node, _state: Dictionary) -> Interval:
 	var animation_player: AnimationPlayer = _owner.get_node(animation_player_np)
-	animation_player.animation_finished.connect(done.emit.unbind(1), CONNECT_ONE_SHOT)
+	animation_player.animation_finished.connect(done.emit, CONNECT_ONE_SHOT)
 	return Func.new(animation_player.play.bind(animation_name))
 
 #region Base Editor Overrides
@@ -39,7 +39,7 @@ static func get_graph_node_color() -> Color:
 func _editor_ready(_edit: GraphEdit, _element: GraphElement):
 	super(_edit, _element)
 	_editor_owner = get_editor_owner(_edit)
-	_inspect_node_button = _element._add_titlebar_button(1, "", preload("res://addons/graphedit2/icons/Object.png"))
+	_inspect_node_button = _element._add_titlebar_button(1, "", preload("uid://dogu5nl2t0e3o"))
 	_inspect_node_button.pressed.connect(_on_inspect)
 	_inspect_node_button.visible = _node_exists()
 

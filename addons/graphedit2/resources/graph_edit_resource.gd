@@ -135,3 +135,22 @@ func _validate_position(pos: Vector2) -> Vector2:
 				pos_check = true
 				break
 	return pos
+
+## Makes a copy of this GraphEditResource.
+func clone(deep := false) -> GraphEditResource:
+	var copy := GraphEditResource.new()
+	
+	var resource_map := {}
+	var new_resources := []
+	for res: Resource in resources:
+		var new_res := res.duplicate(deep)
+		resource_map[res] = new_res
+		new_resources.append(new_res)
+	copy.resources = new_resources
+	
+	var new_connections := []
+	for con: Array in connections:
+		new_connections.append([resource_map[con[0]], con[1], resource_map[con[2]], con[3]])
+	copy.connections = new_connections
+	
+	return copy

@@ -4,35 +4,36 @@ extends EditorPlugin
 ## Developer-friendly Tweens packaged with a simple, powerful, expandable cutscene editor.
 ## [dependent on graphedit2]
 
-const MultiEventEditor = preload("res://addons/intervals/editor/multi_event_editor.gd")
+const MultiEventEditor = preload("uid://2337ws3vaecv")
 
 var multi_event_editor: MultiEventEditor = null
 var multi_event_editor_button: Button = null
 
 func _enter_tree():
-	const EVENT_PLAYER := preload("res://addons/intervals/icons/event_player.png")
-	const INTERVAL := preload("res://addons/intervals/icons/interval.png")
-	const INTERVAL_CONTAINER := preload("res://addons/intervals/icons/interval_container.png")
+	const EVENT_PLAYER := preload("uid://bs7ckj12htwqh")
+	const INTERVAL := preload("uid://cr0j7hu3tjk8b")
+	const INTERVAL_CONTAINER := preload("uid://6bii5s250feh")
 	
 	## Intervals
-	add_custom_type("Interval", "RefCounted", preload("res://addons/intervals/interval/interval.gd"), INTERVAL)
+	add_custom_type("Interval", "RefCounted", preload("uid://b17n1b0oicgpl"), INTERVAL)
 	
 	## Common Intervals
-	add_custom_type("Connect", "Interval", preload("res://addons/intervals/interval/common/connect.gd"), INTERVAL)
-	add_custom_type("Func", "Interval", preload("res://addons/intervals/interval/common/func.gd"), INTERVAL)
-	add_custom_type("LerpFunc", "Interval", preload("res://addons/intervals/interval/common/lerp_func.gd"), INTERVAL)
-	add_custom_type("LerpProperty", "Interval", preload("res://addons/intervals/interval/common/lerp_property.gd"), INTERVAL)
-	add_custom_type("SetProperty", "Interval", preload("res://addons/intervals/interval/common/set_property.gd"), INTERVAL)
-	add_custom_type("Wait", "Interval", preload("res://addons/intervals/interval/common/wait.gd"), INTERVAL)
+	add_custom_type("Connect", "Interval", preload("uid://d05jrpf7u7s6"), INTERVAL)
+	add_custom_type("Func", "Interval", preload("uid://c1ywhkgbfdwxj"), INTERVAL)
+	add_custom_type("LerpFunc", "Interval", preload("uid://s1ii5ralvh"), INTERVAL)
+	add_custom_type("LerpProperty", "Interval", preload("uid://dmed6bgl2e8wr"), INTERVAL)
+	add_custom_type("SetProperty", "Interval", preload("uid://jmqo50w85qjk"), INTERVAL)
+	add_custom_type("Wait", "Interval", preload("uid://dc3mxutiufww8"), INTERVAL)
 	
 	## Container Intervals
-	add_custom_type("IntervalContainer", "Interval", preload("res://addons/intervals/interval/container/interval_container.gd"), INTERVAL_CONTAINER)
-	add_custom_type("Parallel", "IntervalContainer", preload("res://addons/intervals/interval/container/parallel.gd"), INTERVAL_CONTAINER)
-	add_custom_type("Sequence", "IntervalContainer", preload("res://addons/intervals/interval/container/sequence.gd"), INTERVAL_CONTAINER)
-	add_custom_type("SequenceRandom", "IntervalContainer", preload("res://addons/intervals/interval/container/sequence_random.gd"), INTERVAL_CONTAINER)
-	
+	add_custom_type("IntervalContainer", "Interval", preload("uid://c1hfin7e7dwgs"), INTERVAL_CONTAINER)
+	add_custom_type("Parallel", "IntervalContainer", preload("uid://b2d4d4n78umny"), INTERVAL_CONTAINER)
+	add_custom_type("Sequence", "IntervalContainer", preload("uid://bf2mu7m4iycy1"), INTERVAL_CONTAINER)
+	add_custom_type("SequenceRandom", "IntervalContainer", preload("uid://dcjdodbw8jfj1"), INTERVAL_CONTAINER)
+	add_custom_type("TrackInterval", "IntervalContainer", preload("uid://4j3c3kkplxlk"), INTERVAL_CONTAINER)
+
 	## Nodes
-	add_custom_type("EventPlayer", "Node", preload("res://addons/intervals/nodes/event_player.gd"), EVENT_PLAYER)
+	add_custom_type("EventPlayer", "Node", preload("uid://blsus0wox3w7p"), EVENT_PLAYER)
 	
 	## MultiEvent Editor
 	_create_editor()
@@ -59,6 +60,7 @@ func _exit_tree():
 	remove_custom_type("Parallel")
 	remove_custom_type("Sequence")
 	remove_custom_type("SequenceRandom")
+	remove_custom_type("TrackInterval")
 	
 	## Nodes
 	remove_custom_type("EventPlayer")

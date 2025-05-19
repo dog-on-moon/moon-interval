@@ -81,7 +81,7 @@ static func get_graph_node_color() -> Color:
 func _editor_ready(_edit: GraphEdit, _element: GraphElement):
 	super(_edit, _element)
 	_editor_owner = get_editor_owner(_edit)
-	_node_button = _element._add_titlebar_button(1, "", preload("res://addons/graphedit2/icons/Object.png"))
+	_node_button = _element._add_titlebar_button(1, "", preload("uid://dogu5nl2t0e3o"))
 	_node_button.pressed.connect(_on_inspect)
 	_node_button.visible = _object_exists()
 

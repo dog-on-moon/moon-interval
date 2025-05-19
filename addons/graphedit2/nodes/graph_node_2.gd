@@ -25,9 +25,9 @@ func _ready() -> void:
 	#var header_label: Label = get_titlebar_hbox().get_child(0)
 	#header_label.size_flags_horizontal = SIZE_FILL + SIZE_EXPAND
 	
-	inspect_button = _add_titlebar_button(1, "", preload("res://addons/graphedit2/icons/Search.png"))
+	inspect_button = _add_titlebar_button(1, "", preload("uid://dd3oguwxhqx81"))
 	inspect_button.pressed.connect(func (): EditorInterface.edit_resource(resource))
-	close_button = _add_titlebar_button(2, "", preload("res://addons/graphedit2/icons/Close.png"))
+	close_button = _add_titlebar_button(2, "", preload("uid://b7skhb160qyx0"))
 	close_button.pressed.connect(func (): graph_edit.remove_resource(resource))
 
 func _process(delta: float) -> void:
@@ -137,4 +137,4 @@ func get_connection_count() -> int:
 
 ## Returns the stylebox for the title bar.
 static func _get_title_bar_stylebox() -> StyleBox:
-	return preload("res://addons/graphedit2/nodes/graph_node_2_titlebar_stylebox.tres").duplicate()
+	return preload("uid://bpo13ng8wfo8w").duplicate()

@@ -4,7 +4,7 @@ extends VSplitContainer
 
 signal request_reload
 
-const MultiEventGraphEdit = preload("res://addons/intervals/editor/multi_event_graph_edit.gd")
+const MultiEventGraphEdit = preload("uid://ca8nlkbok27c4")
 
 @onready var header: HBoxContainer = $Header
 @onready var graph_edit: MultiEventGraphEdit = $GraphEdit

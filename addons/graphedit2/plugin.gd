@@ -10,16 +10,16 @@ static var undo_redo: EditorUndoRedoManager
 func _enter_tree():
 	undo_redo = get_undo_redo()
 	
-	add_custom_type("GraphEditResource", 	"Resource", preload("res://addons/graphedit2/resources/graph_edit_resource.gd"), preload("res://addons/graphedit2/icons/ResGraphEdit.png"))
-	add_custom_type("GraphElementResource", "Resource", preload("res://addons/graphedit2/resources/graph_element_resource.gd"), preload("res://addons/graphedit2/icons/ResGraphElement.png"))
-	add_custom_type("GraphFrameResource", 	"GraphElementResource", preload("res://addons/graphedit2/resources/graph_frame_resource.gd"), preload("res://addons/graphedit2/icons/ResGraphFrame.png"))
-	add_custom_type("GraphNodeResource", 	"GraphElementResource", preload("res://addons/graphedit2/resources/graph_node_resource.gd"), preload("res://addons/graphedit2/icons/ResGraphNode.png"))
+	add_custom_type("GraphEditResource", 	"Resource", preload("uid://dih7hadp53mog"), preload("uid://1o8lm8tmy1g3"))
+	add_custom_type("GraphElementResource", "Resource", preload("uid://cwuh4uhvd1dpo"), preload("uid://cxni0m345urn8"))
+	add_custom_type("GraphFrameResource", 	"GraphElementResource", preload("uid://cv7ghpv2yx3u"), preload("uid://ddx3k8ypctye2"))
+	add_custom_type("GraphNodeResource", 	"GraphElementResource", preload("uid://d2efhse1dte0t"), preload("uid://dclqykqb882ww"))
 	
-	add_custom_type("GraphElement2", "GraphElement", preload("res://addons/graphedit2/nodes/graph_element_2.gd"), preload("res://addons/graphedit2/icons/GraphElement.png"))
-	add_custom_type("GraphFrame2", "GraphFrame", preload("res://addons/graphedit2/nodes/graph_frame_2.gd"), preload("res://addons/graphedit2/icons/GraphFrame.png"))
-	add_custom_type("GraphNode2", "GraphNode", preload("res://addons/graphedit2/nodes/graph_node_2.gd"), preload("res://addons/graphedit2/icons/GraphNode.png"))
-	add_custom_type("GraphEdit2PopupMenu", "PopupMenu", preload("res://addons/graphedit2/nodes/graph_edit_2_popup_menu.gd"), preload("res://addons/graphedit2/icons/PopupMenu.png"))
-	add_custom_type("GraphEdit2", "GraphEdit", preload("res://addons/graphedit2/nodes/graph_edit_2.gd"), preload("res://addons/graphedit2/icons/GraphEdit.png"))
+	add_custom_type("GraphElement2", "GraphElement", preload("uid://ce1u7joxmkjea"), preload("uid://cee5xma7x7pu3"))
+	add_custom_type("GraphFrame2", "GraphFrame", preload("uid://bftwbcnvgb6xq"), preload("uid://droet0fnkyykk"))
+	add_custom_type("GraphNode2", "GraphNode", preload("uid://w4scwxammmtq"), preload("uid://cgyqcgt0sg0jl"))
+	add_custom_type("GraphEdit2PopupMenu", "PopupMenu", preload("uid://bae7o3fnkpo58"), preload("uid://kibi0q0pdx36"))
+	add_custom_type("GraphEdit2", "GraphEdit", preload("uid://crb5dxvgrdsgb"), preload("uid://dstod65e7tgm6"))
 
 func _exit_tree():
 	remove_custom_type("GraphEdit2")

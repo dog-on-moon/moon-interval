@@ -23,6 +23,9 @@ var active := false
 var plays := 0
 
 func _ready() -> void:
+	# Prevent client server rotting
+	if multi_event:
+		multi_event = multi_event.clone(true)
 	if autoplay:
 		play()
 
@@ -33,12 +36,14 @@ func _exit_tree() -> void:
 	plays = 0
 	state = {}
 
-func play(callback: Callable = func(): pass):
+func play(callback: Callable = func(): pass) -> Tween:
+	if not multi_event:
+		return null
 	active = true
 	plays += 1
 	state['PLAYS'] = plays
 	state['EventPlayer'] = self
-	tween = multi_event.play(owner, _complete.bind(callback), state)
+	return multi_event.play(owner if owner else self, _complete.bind(callback), state)
 
 func _complete(callback: Callable):
 	active = false

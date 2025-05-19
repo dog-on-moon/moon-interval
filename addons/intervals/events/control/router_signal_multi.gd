@@ -30,11 +30,7 @@ func _setup_signals(_owner: Node):
 			var node: Node = _owner.get_node_or_null(np)
 			if node:
 				if node.has_signal(signal_name) or node.has_user_signal(signal_name):
-					node.connect(
-						signal_name,
-						Connect.disable_call_args(_on_signal.bind(_owner, idx)),
-						CONNECT_ONE_SHOT
-					)
+					node.connect(signal_name, _on_signal.bind(_owner, idx), CONNECT_ONE_SHOT)
 
 func _clear_signals(_owner: Node):
 	for idx in range(1, get_branch_count() + 1):
