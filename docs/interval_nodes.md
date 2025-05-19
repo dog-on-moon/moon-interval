@@ -8,7 +8,7 @@ Compared to intervals, they have the following advantages:
 3. They can be set to autoplay on ready.
 4. Playback can be individually disabled using the active flag.
 
-![video](https://github.com/dog-on-moon/moon-interval/blob/main/docs/images/nodes.mp4)
+![video](https://github.com/dog-on-moon/moon-interval/blob/main/docs/images/nodes.gif)
 
 Compositing interval nodes is identical to intervals.
 You can use SequenceNodes and ParallelNodes to group them for playback.
