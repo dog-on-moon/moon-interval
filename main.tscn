@@ -1,13 +1,14 @@
-[gd_scene load_steps=18 format=3 uid="uid://bn20pfjlckb8g"]
+[gd_scene load_steps=19 format=3 uid="uid://bn20pfjlckb8g"]
 
 [ext_resource type="PackedScene" uid="uid://2kdtgsh86n8m" path="res://demos/demo_dialog.tscn" id="1_plly4"]
 [ext_resource type="PackedScene" uid="uid://bly5b6gw3xcg2" path="res://demos/demo_colors.tscn" id="2_10btf"]
-[ext_resource type="Script" path="res://addons/intervals/nodes/event_player.gd" id="3_lclxn"]
+[ext_resource type="Script" uid="uid://blsus0wox3w7p" path="res://addons/moon-interval/nodes/event_player.gd" id="3_lclxn"]
 [ext_resource type="PackedScene" uid="uid://ihnrxutdfhnh" path="res://demos/demo_cooking.tscn" id="3_y4rd3"]
-[ext_resource type="Script" path="res://addons/intervals/events/animate/wait_event.gd" id="4_0jpmg"]
-[ext_resource type="Script" path="res://addons/intervals/events/animate/animation_player_event.gd" id="5_reroh"]
-[ext_resource type="Script" path="res://addons/graphedit2/resources/graph_edit_resource.gd" id="6_klsph"]
-[ext_resource type="Script" path="res://addons/intervals/events/multi_event.gd" id="7_0cu5c"]
+[ext_resource type="Script" uid="uid://bhfqv5etqnxlh" path="res://addons/moon-interval/events/animate/wait_event.gd" id="4_0jpmg"]
+[ext_resource type="PackedScene" uid="uid://ciavmud6x3ewv" path="res://demos/demo_nodes.tscn" id="4_kek77"]
+[ext_resource type="Script" uid="uid://dm526geqwj0qd" path="res://addons/moon-interval/events/animate/animation_player_event.gd" id="5_reroh"]
+[ext_resource type="Script" uid="uid://dih7hadp53mog" path="res://addons/graphedit2/resources/graph_edit_resource.gd" id="6_klsph"]
+[ext_resource type="Script" uid="uid://ciyodddkqsiev" path="res://addons/moon-interval/events/multi_event.gd" id="7_0cu5c"]
 
 [sub_resource type="LabelSettings" id="LabelSettings_v8yia"]
 font_size = 24
@@ -24,33 +25,6 @@ func _pressed() -> void:
 	add_child(new_demo)
 "
 
-[sub_resource type="Animation" id="Animation_gv04a"]
-resource_name = "move"
-tracks/0/type = "value"
-tracks/0/imported = false
-tracks/0/enabled = true
-tracks/0/path = NodePath("ColorRect:position")
-tracks/0/interp = 1
-tracks/0/loop_wrap = true
-tracks/0/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"values": [Vector2(135, 67), Vector2(303, 59)],
-"update": 0
-}
-tracks/1/type = "value"
-tracks/1/imported = false
-tracks/1/enabled = true
-tracks/1/path = NodePath("ColorRect:rotation")
-tracks/1/interp = 1
-tracks/1/loop_wrap = true
-tracks/1/keys = {
-"times": PackedFloat32Array(0, 1),
-"transitions": PackedFloat32Array(1, 1),
-"values": [0.0, 0.0],
-"update": 0
-}
-
 [sub_resource type="Animation" id="Animation_hu8lt"]
 length = 0.001
 tracks/0/type = "value"
@@ -62,8 +36,8 @@ tracks/0/loop_wrap = true
 tracks/0/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"values": [Vector2(135, 67)],
-"update": 0
+"update": 0,
+"values": [Vector2(135, 67)]
 }
 tracks/1/type = "value"
 tracks/1/imported = false
@@ -74,14 +48,41 @@ tracks/1/loop_wrap = true
 tracks/1/keys = {
 "times": PackedFloat32Array(0),
 "transitions": PackedFloat32Array(1),
-"values": [0.0],
-"update": 0
+"update": 0,
+"values": [0.0]
+}
+
+[sub_resource type="Animation" id="Animation_gv04a"]
+resource_name = "move"
+tracks/0/type = "value"
+tracks/0/imported = false
+tracks/0/enabled = true
+tracks/0/path = NodePath("ColorRect:position")
+tracks/0/interp = 1
+tracks/0/loop_wrap = true
+tracks/0/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [Vector2(135, 67), Vector2(303, 59)]
+}
+tracks/1/type = "value"
+tracks/1/imported = false
+tracks/1/enabled = true
+tracks/1/path = NodePath("ColorRect:rotation")
+tracks/1/interp = 1
+tracks/1/loop_wrap = true
+tracks/1/keys = {
+"times": PackedFloat32Array(0, 1),
+"transitions": PackedFloat32Array(1, 1),
+"update": 0,
+"values": [0.0, 0.0]
 }
 
 [sub_resource type="AnimationLibrary" id="AnimationLibrary_goffc"]
 _data = {
-&"move": SubResource("Animation_gv04a"),
-&"RESET": SubResource("Animation_hu8lt")
+&"RESET": SubResource("Animation_hu8lt"),
+&"move": SubResource("Animation_gv04a")
 }
 
 [sub_resource type="Resource" id="Resource_ku2so"]
@@ -152,6 +153,12 @@ layout_mode = 2
 text = "Cooking"
 script = SubResource("GDScript_x7c8c")
 demo = ExtResource("3_y4rd3")
+
+[node name="Nodes" type="Button" parent="VBoxContainer"]
+layout_mode = 2
+text = "Nodes"
+script = SubResource("GDScript_x7c8c")
+demo = ExtResource("4_kek77")
 
 [node name="ColorRect" type="ColorRect" parent="."]
 layout_mode = 0

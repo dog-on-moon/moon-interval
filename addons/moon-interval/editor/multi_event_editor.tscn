@@ -1,0 +1,88 @@
+[gd_scene load_steps=4 format=3 uid="uid://denrfwms0xkc7"]
+
+[ext_resource type="Script" uid="uid://2337ws3vaecv" path="res://addons/moon-interval/editor/multi_event_editor.gd" id="1_8w3a3"]
+[ext_resource type="Script" uid="uid://ca8nlkbok27c4" path="res://addons/moon-interval/editor/multi_event_graph_edit.gd" id="5_vb6tf"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_c312x"]
+
+[node name="MultiEventEditor" type="VSplitContainer"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+collapsed = true
+dragger_visibility = 1
+script = ExtResource("1_8w3a3")
+
+[node name="Header" type="HBoxContainer" parent="."]
+custom_minimum_size = Vector2(0, 24)
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="UpEventButton" type="Button" parent="Header"]
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "^"
+
+[node name="Spacing" type="Control" parent="Header"]
+custom_minimum_size = Vector2(3, 0)
+layout_mode = 2
+
+[node name="UpEventLabel" type="Label" parent="Header"]
+layout_mode = 2
+size_flags_stretch_ratio = 0.22
+theme_override_styles/normal = SubResource("StyleBoxEmpty_c312x")
+text = " MultiEvent > MultiEvent > "
+vertical_alignment = 1
+
+[node name="EventNameEdit" type="TextEdit" parent="Header"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+size_flags_horizontal = 8
+placeholder_text = "MultiEvent"
+scroll_fit_content_height = true
+
+[node name="WarningSpacing" type="Label" parent="Header"]
+layout_mode = 2
+size_flags_horizontal = 3
+theme_override_colors/font_color = Color(1, 0.870588, 0.4, 1)
+horizontal_alignment = 1
+clip_text = true
+
+[node name="Spacing2" type="Control" parent="Header"]
+custom_minimum_size = Vector2(3, 0)
+layout_mode = 2
+
+[node name="CyclesBox" type="CheckBox" parent="Header"]
+layout_mode = 2
+text = "Allow Cycles"
+
+[node name="DebugBox" type="CheckBox" parent="Header"]
+layout_mode = 2
+text = "Print at Runtime"
+
+[node name="Spacing3" type="Control" parent="Header"]
+custom_minimum_size = Vector2(3, 0)
+layout_mode = 2
+
+[node name="ReloadButton" type="Button" parent="Header"]
+layout_mode = 2
+text = "Reload Editor"
+
+[node name="GraphEdit" type="GraphEdit" parent="."]
+custom_minimum_size = Vector2(0, 128)
+layout_mode = 2
+grid_pattern = 1
+minimap_enabled = false
+show_zoom_label = true
+script = ExtResource("5_vb6tf")
+
+[node name="Label" type="Label" parent="."]
+visible = false
+layout_mode = 2
+size_flags_vertical = 3
+text = "No MultiEvent selected."
+horizontal_alignment = 1
+vertical_alignment = 1

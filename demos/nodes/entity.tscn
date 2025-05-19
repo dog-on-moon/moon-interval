@@ -1,0 +1,20 @@
+[gd_scene load_steps=3 format=3 uid="uid://bwmsbqawox60j"]
+
+[ext_resource type="Texture2D" uid="uid://c307xqrtl5ojw" path="res://icon.png" id="1_s0yjh"]
+[ext_resource type="PackedScene" uid="uid://q4p6nafgyqqv" path="res://demos/nodes/ear.tscn" id="2_4r4p6"]
+
+[node name="Entity" type="Sprite2D"]
+scale = Vector2(0.5, 0.5)
+texture = ExtResource("1_s0yjh")
+
+[node name="Ear" parent="." instance=ExtResource("2_4r4p6")]
+position = Vector2(-84, -82)
+
+[node name="Ear2" parent="." instance=ExtResource("2_4r4p6")]
+position = Vector2(28, -80)
+
+[node name="Ear3" parent="." instance=ExtResource("2_4r4p6")]
+position = Vector2(28, 24)
+
+[node name="Ear4" parent="." instance=ExtResource("2_4r4p6")]
+position = Vector2(-84, 24)

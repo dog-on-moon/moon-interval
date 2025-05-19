@@ -1,0 +1,129 @@
+[gd_scene load_steps=7 format=3 uid="uid://q4p6nafgyqqv"]
+
+[ext_resource type="Texture2D" uid="uid://c55jdycqxnso6" path="res://addons/moon-interval/icons/event.png" id="1_fdnsy"]
+[ext_resource type="Script" uid="uid://w53l1qtcgxyu" path="res://addons/moon-interval/nodes/lerp_property_node.gd" id="2_mkqa1"]
+[ext_resource type="Script" uid="uid://hdjgpdt57p5a" path="res://addons/moon-interval/nodes/sequence_node.gd" id="2_pndd6"]
+[ext_resource type="Script" uid="uid://be8ua6ji4bugr" path="res://addons/moon-interval/nodes/parallel_node.gd" id="3_bj5wu"]
+[ext_resource type="Script" uid="uid://d2t47oeh14y4h" path="res://addons/moon-interval/nodes/set_property_node.gd" id="5_pndd6"]
+[ext_resource type="Script" uid="uid://cf8y2gbe10g4w" path="res://addons/moon-interval/nodes/wait_node.gd" id="6_lxkvl"]
+
+[node name="Ear" type="Sprite2D"]
+rotation = 6.28
+texture = ExtResource("1_fdnsy")
+
+[node name="Animation" type="Node" parent="."]
+script = ExtResource("2_pndd6")
+autoplay = true
+looping = true
+metadata/_custom_type_script = "uid://hdjgpdt57p5a"
+
+[node name="RotParallel" type="Node" parent="Animation"]
+script = ExtResource("3_bj5wu")
+metadata/_custom_type_script = "uid://be8ua6ji4bugr"
+
+[node name="Spin" type="Node" parent="Animation/RotParallel" node_paths=PackedStringArray("node")]
+script = ExtResource("2_mkqa1")
+node = NodePath("../../..")
+property = &":rotation"
+start_value = 6.28
+value = 0.0
+duration = 1.0
+trans = 7
+flags = 1
+metadata/_custom_type_script = "uid://w53l1qtcgxyu"
+
+[node name="SkewSequence" type="Node" parent="Animation/RotParallel"]
+script = ExtResource("2_pndd6")
+metadata/_custom_type_script = "uid://hdjgpdt57p5a"
+
+[node name="Skew1" type="Node" parent="Animation/RotParallel/SkewSequence" node_paths=PackedStringArray("node")]
+script = ExtResource("2_mkqa1")
+node = NodePath("../../../..")
+property = &":skew"
+start_value = 0.0
+value = 0.5
+duration = 0.5
+flags = 1
+metadata/_custom_type_script = "uid://w53l1qtcgxyu"
+
+[node name="Skew2" type="Node" parent="Animation/RotParallel/SkewSequence" node_paths=PackedStringArray("node")]
+script = ExtResource("2_mkqa1")
+node = NodePath("../../../..")
+property = &":skew"
+value = 0.0
+duration = 0.5
+metadata/_custom_type_script = "uid://w53l1qtcgxyu"
+
+[node name="Flip1" type="Node" parent="Animation" node_paths=PackedStringArray("node")]
+script = ExtResource("5_pndd6")
+node = NodePath("../..")
+property = &":flip_h"
+value = true
+metadata/_custom_type_script = "uid://dyy8dwk13mfwo"
+
+[node name="BounceParallel1" type="Node" parent="Animation"]
+script = ExtResource("3_bj5wu")
+metadata/_custom_type_script = "uid://be8ua6ji4bugr"
+
+[node name="Squish" type="Node" parent="Animation/BounceParallel1" node_paths=PackedStringArray("node")]
+script = ExtResource("2_mkqa1")
+node = NodePath("../../..")
+property = &":scale"
+start_value = Vector2(2, 0.5)
+value = Vector2(1, 1)
+duration = 0.4
+ease = 1
+trans = 4
+flags = 1
+reset_in_editor = false
+metadata/_custom_type_script = "uid://w53l1qtcgxyu"
+
+[node name="Flash" type="Node" parent="Animation/BounceParallel1" node_paths=PackedStringArray("node")]
+script = ExtResource("2_mkqa1")
+node = NodePath("../../..")
+property = &":modulate"
+start_value = Color(1, 0.936667, 0.05, 1)
+value = Color(1, 1, 1, 1)
+duration = 0.4
+flags = 1
+reset_in_editor = false
+metadata/_custom_type_script = "uid://w53l1qtcgxyu"
+
+[node name="Flip2" type="Node" parent="Animation" node_paths=PackedStringArray("node")]
+script = ExtResource("5_pndd6")
+node = NodePath("../..")
+property = &":flip_h"
+value = false
+metadata/_custom_type_script = "uid://dyy8dwk13mfwo"
+
+[node name="BounceParallel2" type="Node" parent="Animation"]
+script = ExtResource("3_bj5wu")
+metadata/_custom_type_script = "uid://be8ua6ji4bugr"
+
+[node name="Squish" type="Node" parent="Animation/BounceParallel2" node_paths=PackedStringArray("node")]
+script = ExtResource("2_mkqa1")
+node = NodePath("../../..")
+property = &":scale"
+start_value = Vector2(2, 0.5)
+value = Vector2(1, 1)
+duration = 0.4
+ease = 1
+trans = 4
+flags = 1
+reset_in_editor = false
+metadata/_custom_type_script = "uid://w53l1qtcgxyu"
+
+[node name="Flash" type="Node" parent="Animation/BounceParallel2" node_paths=PackedStringArray("node")]
+script = ExtResource("2_mkqa1")
+node = NodePath("../../..")
+property = &":modulate"
+start_value = Color(1, 0.936667, 0.05, 1)
+value = Color(1, 1, 1, 1)
+duration = 0.4
+flags = 1
+reset_in_editor = false
+metadata/_custom_type_script = "uid://w53l1qtcgxyu"
+
+[node name="WaitNode" type="Node" parent="Animation"]
+script = ExtResource("6_lxkvl")
+metadata/_custom_type_script = "uid://cf8y2gbe10g4w"

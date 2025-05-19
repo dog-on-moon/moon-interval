@@ -1,0 +1,166 @@
+[gd_scene load_steps=9 format=3 uid="uid://ciavmud6x3ewv"]
+
+[ext_resource type="Script" uid="uid://dysw2a854eddf" path="res://demos/demo.gd" id="1_ho166"]
+[ext_resource type="PackedScene" uid="uid://bwmsbqawox60j" path="res://demos/nodes/entity.tscn" id="2_ujao5"]
+[ext_resource type="Script" uid="uid://hdjgpdt57p5a" path="res://addons/moon-interval/nodes/sequence_node.gd" id="3_av6ef"]
+[ext_resource type="Script" uid="uid://d2t47oeh14y4h" path="res://addons/moon-interval/nodes/set_property_node.gd" id="4_hqyg6"]
+[ext_resource type="Script" uid="uid://w53l1qtcgxyu" path="res://addons/moon-interval/nodes/lerp_property_node.gd" id="5_dabby"]
+[ext_resource type="Script" uid="uid://cf8y2gbe10g4w" path="res://addons/moon-interval/nodes/wait_node.gd" id="6_8dily"]
+[ext_resource type="Script" uid="uid://dyy8dwk13mfwo" path="res://addons/moon-interval/nodes/func_node.gd" id="7_jgqo0"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_jgqo0"]
+font_size = 64
+
+[node name="DemoNodes" type="Node"]
+script = ExtResource("1_ho166")
+metadata/_custom_type_script = "uid://dysw2a854eddf"
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Background" type="ColorRect" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.13685, 0.1295, 0.35, 1)
+
+[node name="Node2D" type="Node2D" parent="Control"]
+
+[node name="Entity" parent="Control/Node2D" instance=ExtResource("2_ujao5")]
+position = Vector2(303, 217)
+
+[node name="Entity2" parent="Control/Node2D" instance=ExtResource("2_ujao5")]
+position = Vector2(730, 127)
+
+[node name="Entity3" parent="Control/Node2D" instance=ExtResource("2_ujao5")]
+position = Vector2(610, 244)
+
+[node name="Entity4" parent="Control/Node2D" instance=ExtResource("2_ujao5")]
+position = Vector2(1049, 387)
+
+[node name="Entity5" parent="Control/Node2D" instance=ExtResource("2_ujao5")]
+position = Vector2(177, 464)
+
+[node name="Entity6" parent="Control/Node2D" instance=ExtResource("2_ujao5")]
+position = Vector2(480, 90)
+
+[node name="Entity7" parent="Control/Node2D" instance=ExtResource("2_ujao5")]
+position = Vector2(130, 129)
+
+[node name="Entity8" parent="Control/Node2D" instance=ExtResource("2_ujao5")]
+position = Vector2(914, 267)
+
+[node name="Button" type="Button" parent="Control"]
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -105.0
+offset_top = -122.0
+offset_right = 105.0
+offset_bottom = -91.0
+grow_horizontal = 2
+grow_vertical = 0
+text = "reduce them to a memory"
+
+[node name="Pressed" type="Node" parent="Control/Button"]
+script = ExtResource("3_av6ef")
+metadata/_custom_type_script = "uid://hdjgpdt57p5a"
+
+[node name="DisableButton" type="Node" parent="Control/Button/Pressed" node_paths=PackedStringArray("node")]
+script = ExtResource("4_hqyg6")
+node = NodePath("../..")
+property = &":disabled"
+value = true
+metadata/_custom_type_script = "uid://d2t47oeh14y4h"
+
+[node name="Vanish" type="Node" parent="Control/Button/Pressed" node_paths=PackedStringArray("node")]
+script = ExtResource("5_dabby")
+node = NodePath("../../../Node2D")
+property = &":modulate"
+start_value = Color(1, 1, 1, 1)
+value = Color(1, 1, 1, 0)
+duration = 3.0
+metadata/_custom_type_script = "uid://w53l1qtcgxyu"
+
+[node name="WaitNode" type="Node" parent="Control/Button/Pressed"]
+script = ExtResource("6_8dily")
+time = 0.5
+metadata/_custom_type_script = "uid://cf8y2gbe10g4w"
+
+[node name="LabelPopin" type="Node" parent="Control/Button/Pressed" node_paths=PackedStringArray("node")]
+script = ExtResource("5_dabby")
+node = NodePath("../../../Label")
+property = &":modulate"
+start_value = Color(1, 1, 1, 0)
+value = Color(1, 1, 1, 1)
+duration = 2.0
+flags = 1
+metadata/_custom_type_script = "uid://w53l1qtcgxyu"
+
+[node name="WaitNode2" type="Node" parent="Control/Button/Pressed"]
+script = ExtResource("6_8dily")
+time = 2.0
+metadata/_custom_type_script = "uid://cf8y2gbe10g4w"
+
+[node name="LabelPopout" type="Node" parent="Control/Button/Pressed" node_paths=PackedStringArray("node")]
+script = ExtResource("5_dabby")
+node = NodePath("../../../Label")
+property = &":modulate"
+start_value = Color(1, 1, 1, 0)
+value = Color(1, 1, 1, 0)
+duration = 2.0
+metadata/_custom_type_script = "uid://w53l1qtcgxyu"
+
+[node name="SceneFadeout" type="Node" parent="Control/Button/Pressed" node_paths=PackedStringArray("node")]
+script = ExtResource("5_dabby")
+node = NodePath("../../..")
+property = &":modulate"
+start_value = Color(1, 1, 1, 1)
+value = Color(1, 1, 1, 0)
+duration = 3.0
+flags = 1
+metadata/_custom_type_script = "uid://w53l1qtcgxyu"
+
+[node name="Cleanup" type="Node" parent="Control/Button/Pressed" node_paths=PackedStringArray("node")]
+script = ExtResource("7_jgqo0")
+node = NodePath("../../../..")
+function = &"queue_free"
+metadata/_custom_type_script = "uid://dyy8dwk13mfwo"
+
+[node name="Label" type="Label" parent="Control"]
+modulate = Color(1, 1, 1, 0)
+layout_mode = 1
+anchors_preset = 5
+anchor_left = 0.5
+anchor_right = 0.5
+offset_left = -151.0
+offset_top = 267.0
+offset_right = 151.0
+offset_bottom = 355.0
+grow_horizontal = 2
+text = "It is done."
+label_settings = SubResource("LabelSettings_jgqo0")
+horizontal_alignment = 1
+
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 2
+anchor_top = 1.0
+anchor_bottom = 1.0
+offset_top = -23.0
+offset_right = 281.0
+grow_vertical = 0
+text = "This scene uses no custom GDScript."
+
+[connection signal="pressed" from="Control/Button" to="Control/Button/Pressed" method="start"]

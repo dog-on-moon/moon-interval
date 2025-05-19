@@ -1,14 +1,14 @@
 [gd_scene load_steps=32 format=3 uid="uid://2kdtgsh86n8m"]
 
-[ext_resource type="Script" path="res://demos/dialog/dialogue_container.gd" id="1_ntth3"]
-[ext_resource type="Script" path="res://demos/demo.gd" id="1_xvt66"]
-[ext_resource type="Script" path="res://demos/dialog/dialogue_event.gd" id="2_6k14q"]
-[ext_resource type="Script" path="res://addons/intervals/nodes/event_player.gd" id="3_s2wu6"]
-[ext_resource type="Script" path="res://addons/intervals/events/animate/wait_event.gd" id="3_ugcjs"]
-[ext_resource type="Script" path="res://addons/graphedit2/resources/graph_edit_resource.gd" id="5_6hf1m"]
-[ext_resource type="Script" path="res://addons/intervals/events/multi_event.gd" id="5_xyc0c"]
-[ext_resource type="Script" path="res://demos/dialog/clear_dialogue_event.gd" id="17_qgdhk"]
-[ext_resource type="Script" path="res://addons/intervals/events/script/property_event.gd" id="18_ge6fo"]
+[ext_resource type="Script" uid="uid://cyg7r04oieopl" path="res://demos/dialog/dialogue_container.gd" id="1_ntth3"]
+[ext_resource type="Script" uid="uid://dysw2a854eddf" path="res://demos/demo.gd" id="1_xvt66"]
+[ext_resource type="Script" uid="uid://0l2dye8un843" path="res://demos/dialog/dialogue_event.gd" id="2_6k14q"]
+[ext_resource type="Script" uid="uid://blsus0wox3w7p" path="res://addons/moon-interval/nodes/event_player.gd" id="3_s2wu6"]
+[ext_resource type="Script" uid="uid://bhfqv5etqnxlh" path="res://addons/moon-interval/events/animate/wait_event.gd" id="3_ugcjs"]
+[ext_resource type="Script" uid="uid://dih7hadp53mog" path="res://addons/graphedit2/resources/graph_edit_resource.gd" id="5_6hf1m"]
+[ext_resource type="Script" uid="uid://ciyodddkqsiev" path="res://addons/moon-interval/events/multi_event.gd" id="5_xyc0c"]
+[ext_resource type="Script" uid="uid://dn5i4ddcjc6iv" path="res://demos/dialog/clear_dialogue_event.gd" id="17_qgdhk"]
+[ext_resource type="Script" uid="uid://cuyiggc4hjc42" path="res://addons/moon-interval/events/script/property_event.gd" id="18_ge6fo"]
 
 [sub_resource type="Gradient" id="Gradient_gd43b"]
 offsets = PackedFloat32Array(0, 0.5075, 1)
