@@ -77,7 +77,7 @@ Interval Nodes are another alternative to the AnimationPlayer, providing a verbo
 Each node maps onto an existing tween function, and allows the animation of any node in the scene.
 They can also be individually controlled and previewed. Their playback is organized using Sequence and Parallel nodes.
 
-![video](https://github.com/dog-on-moon/moon-interval/blob/main/readme/nodes.mp4)
+![video](https://github.com/dog-on-moon/moon-interval/blob/main/docs/images/nodes.mp4)
 
 ## ⏹️ Events - macroscopic building blocks
 
