@@ -1,0 +1,104 @@
+[gd_scene load_steps=4 format=3 uid="uid://cw1svr8qn6n8n"]
+
+[sub_resource type="GDScript" id="GDScript_g38xw"]
+script/source = "@tool
+extends HBoxContainer
+
+@export var txt := \"\":
+	set(x):
+		txt = x
+		if not is_node_ready():
+			await ready
+		label.text = x
+@export var color := Color.WHITE:
+	set(x):
+		color = x
+		if not is_node_ready():
+			await ready
+		label.label_settings.font_color = color
+
+@export var amount := 0.0:
+	set(x):
+		amount = x
+		if not is_node_ready():
+			await ready
+		progress_bar.value = x
+
+@export var cracked := false:
+	set(x):
+		cracked = x
+		if not is_node_ready():
+			await ready
+		progress_bar.visible = not cracked
+		label_2.visible = cracked
+
+@onready var label: Label = $Label
+@onready var progress_bar: ProgressBar = $Control/ProgressBar
+@onready var label_2: Label = $Control/Label2
+
+
+func start():
+	amount = 0.0
+	cracked = false
+	show()
+
+func add_amount(a: float):
+	if cracked:
+		return
+	amount += a
+	if amount >= 99.9:
+		cracked = true
+
+func stop():
+	amount = 0.0
+	cracked = false
+	hide()
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_3rlvh"]
+resource_local_to_scene = true
+font_size = 21
+font_color = Color(1, 0.22, 0.22, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_lymea"]
+font_size = 71
+font_color = Color(0, 0.966667, 1, 1)
+
+[node name="Stupid1" type="HBoxContainer"]
+offset_right = 430.0
+offset_bottom = 30.0
+size_flags_vertical = 3
+script = SubResource("GDScript_g38xw")
+
+[node name="Label" type="Label" parent="."]
+layout_mode = 2
+text = "EGG COEFFICIENT:"
+label_settings = SubResource("LabelSettings_3rlvh")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Control" type="Control" parent="."]
+layout_mode = 2
+size_flags_horizontal = 3
+
+[node name="ProgressBar" type="ProgressBar" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+size_flags_horizontal = 3
+size_flags_vertical = 1
+
+[node name="Label2" type="Label" parent="Control"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "FATAL"
+label_settings = SubResource("LabelSettings_lymea")
+horizontal_alignment = 1
+vertical_alignment = 1

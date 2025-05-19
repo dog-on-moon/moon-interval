@@ -1,0 +1,24 @@
+[gd_scene load_steps=2 format=3 uid="uid://b8k7omxcxfluk"]
+
+[sub_resource type="GDScript" id="GDScript_gxc16"]
+script/source = "@tool
+extends Button
+
+@export var label := \"Red Wine\":
+	set(x):
+		label = x
+		text = x
+
+@export var ingredient_boost := [0.0, 0.0, 0.0]
+
+func start():
+	visible = true
+
+func stop():
+	visible = false
+"
+
+[node name="Button1" type="Button"]
+custom_minimum_size = Vector2(100, 0)
+text = "Red Wine"
+script = SubResource("GDScript_gxc16")

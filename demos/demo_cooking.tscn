@@ -1,0 +1,438 @@
+[gd_scene load_steps=17 format=3 uid="uid://ihnrxutdfhnh"]
+
+[ext_resource type="Script" path="res://demos/demo.gd" id="1_1ksfv"]
+[ext_resource type="Script" path="res://demos/cooking/cook_master.gd" id="2_ca368"]
+[ext_resource type="AudioStream" uid="uid://bfxqw72ykpw1h" path="res://demos/cooking/bees.mp3" id="2_wcvvp"]
+[ext_resource type="AudioStream" uid="uid://dd2otci1i1pdx" path="res://demos/cooking/song.mp3" id="3_be4c5"]
+[ext_resource type="PackedScene" uid="uid://b8k7omxcxfluk" path="res://demos/cooking/ingredient_button.tscn" id="4_inp7m"]
+[ext_resource type="PackedScene" uid="uid://cw1svr8qn6n8n" path="res://demos/cooking/stupid_meter.tscn" id="4_wf73i"]
+
+[sub_resource type="GDScript" id="GDScript_peeba"]
+script/source = "@tool
+extends Node2D
+
+var active := true
+
+func _process(delta: float) -> void:
+	if active:
+		rotation_degrees += delta * 25.0
+"
+
+[sub_resource type="Gradient" id="Gradient_cctyh"]
+offsets = PackedFloat32Array(0, 0.597701)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_x5h3w"]
+gradient = SubResource("Gradient_cctyh")
+fill = 1
+fill_from = Vector2(0.504274, 0.487179)
+
+[sub_resource type="GDScript" id="GDScript_gnnlb"]
+script/source = "extends Control
+
+signal crime
+
+signal complete
+
+@onready var ingredient_label: Label = $Label3
+
+func _ready() -> void:
+	for child in get_children():
+		child.hide()
+
+func start():
+	for child in get_children():
+		await get_tree().create_timer(2.0).timeout
+		child.visible = true
+		if child.name == \"Label3\":
+			crime.emit()
+	complete.emit()
+
+func stop() -> Label:
+	for child in get_children():
+		child.hide()
+	return ingredient_label.duplicate()
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_35g2n"]
+font_size = 31
+outline_size = 5
+outline_color = Color(0.25, 0.133333, 0, 1)
+
+[sub_resource type="LabelSettings" id="LabelSettings_dd2h2"]
+font_size = 81
+outline_size = 30
+outline_color = Color(0.25, 0.229, 0.11, 1)
+shadow_color = Color(1, 0, 0, 0)
+
+[sub_resource type="GDScript" id="GDScript_guhba"]
+script/source = "@tool
+extends Label
+
+@onready var audio_stream_player_2d: AudioStreamPlayer2D = $AudioStreamPlayer2D
+
+func _ready() -> void:
+	visibility_changed.connect(_visibility_changed)
+	_visibility_changed()
+
+func _visibility_changed() -> void:
+	audio_stream_player_2d.playing = visible
+
+func _process(_delta: float) -> void:
+	label_settings.outline_size = randi_range(20, 50)
+"
+
+[sub_resource type="GDScript" id="GDScript_50hju"]
+script/source = "@tool
+extends Label
+
+func _process(_delta: float) -> void:
+	scale = Vector2.ONE * 2.0 * randf_range(0.95, 1.05)
+"
+
+[sub_resource type="GDScript" id="GDScript_wnsbk"]
+script/source = "extends Control
+
+signal result(ingredient_amounts: Array)
+
+@onready var h_box_container: HBoxContainer = $HBoxContainer
+@onready var stupid_container: VBoxContainer = $StupidContainer
+
+@onready var label_2: Label = $Label2
+@onready var ingredient_initial := label_2.text
+
+const PRESSED_REQ := 4
+
+var pressed_count := 0:
+	set(x):
+		pressed_count = x
+		if not is_node_ready():
+			await ready 
+		label_2.text = ingredient_initial % (PRESSED_REQ - x)
+
+func start():
+	stupid_container.visible = false
+	h_box_container.visible = false
+	visible = true
+	
+	await get_tree().create_timer(1.5).timeout
+	h_box_container.visible = true
+	pressed_count = 0
+	for b in h_box_container.get_children():
+		b.pressed.connect(b_pressed.bind(b))
+		b.start()
+	for child in stupid_container.get_children():
+		child.start()
+	
+	await get_tree().create_timer(1.5).timeout
+	stupid_container.visible = true
+
+func b_pressed(b: Button):
+	if pressed_count >= PRESSED_REQ:
+		return
+	print(b.ingredient_boost)
+	for idx in stupid_container.get_child_count():
+		var child := stupid_container.get_child(idx)
+		child.add_amount(b.ingredient_boost[idx] * 100.0)
+	b.hide()
+	
+	pressed_count += 1
+	if pressed_count >= PRESSED_REQ:
+		var r := []
+		for child in stupid_container.get_children():
+			r.append(child.amount)
+		result.emit(r)
+
+func stop():
+	visible = false
+	for b in h_box_container.get_children():
+		if b.has_connections(&\"pressed\"):
+			b.pressed.disconnect(b_pressed.bind(b))
+		b.stop()
+	for child in stupid_container.get_children():
+		child.stop.call_deferred()
+	return stupid_container.duplicate()
+"
+
+[sub_resource type="LabelSettings" id="LabelSettings_06xvv"]
+font_size = 21
+
+[node name="DemoCooking" type="Node"]
+script = ExtResource("1_1ksfv")
+
+[node name="CookMaster" type="Control" parent="."]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("2_ca368")
+
+[node name="World" type="Control" parent="CookMaster"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="ColorRect" type="ColorRect" parent="CookMaster/World"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.0225, 0.02925, 0.09, 1)
+
+[node name="ColorRect2" type="ColorRect" parent="CookMaster/World"]
+visible = false
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0.09, 0.0225, 0.0225, 1)
+
+[node name="LightMachine" type="Node2D" parent="CookMaster/World"]
+position = Vector2(576, 324)
+rotation = 1773.61
+script = SubResource("GDScript_peeba")
+
+[node name="PointLight2D" type="PointLight2D" parent="CookMaster/World/LightMachine"]
+position = Vector2(177, -157)
+energy = 3.31
+texture = SubResource("GradientTexture2D_x5h3w")
+texture_scale = 8.96
+
+[node name="PointLight2D3" type="PointLight2D" parent="CookMaster/World/LightMachine"]
+position = Vector2(59, 264)
+energy = 3.31
+texture = SubResource("GradientTexture2D_x5h3w")
+texture_scale = 8.96
+
+[node name="PointLight2D2" type="PointLight2D" parent="CookMaster/World/LightMachine"]
+position = Vector2(-241, -68)
+energy = 3.31
+texture = SubResource("GradientTexture2D_x5h3w")
+texture_scale = 8.96
+
+[node name="Control" type="Control" parent="CookMaster"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_gnnlb")
+
+[node name="Label" type="Label" parent="CookMaster/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -154.0
+offset_top = -186.0
+offset_right = 154.0
+offset_bottom = -163.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "welcome to my sick-ass cooking show...."
+label_settings = SubResource("LabelSettings_35g2n")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CookMaster/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -298.0
+offset_top = -123.0
+offset_right = 298.0
+offset_bottom = -79.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "im gonna need you to cook:"
+label_settings = SubResource("LabelSettings_35g2n")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="CookMaster/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -304.0
+offset_top = -61.0
+offset_right = 294.0
+offset_bottom = 50.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Egg  Bread  Salt"
+label_settings = SubResource("LabelSettings_dd2h2")
+horizontal_alignment = 1
+vertical_alignment = 1
+script = SubResource("GDScript_guhba")
+
+[node name="AudioStreamPlayer2D" type="AudioStreamPlayer2D" parent="CookMaster/Control/Label3"]
+position = Vector2(290, 65)
+stream = ExtResource("2_wcvvp")
+attenuation = 2.07053
+panning_strength = 1.79
+
+[node name="Label4" type="Label" parent="CookMaster/Control"]
+visible = false
+layout_mode = 1
+anchors_preset = 7
+anchor_left = 0.5
+anchor_top = 1.0
+anchor_right = 0.5
+anchor_bottom = 1.0
+offset_left = -101.0
+offset_top = -121.0
+offset_right = 96.0
+offset_bottom = -98.0
+grow_horizontal = 2
+grow_vertical = 0
+scale = Vector2(2.08041, 2.08041)
+pivot_offset = Vector2(99, 12)
+text = "Press any key to cook"
+horizontal_alignment = 1
+vertical_alignment = 1
+script = SubResource("GDScript_50hju")
+
+[node name="Control2" type="Control" parent="CookMaster"]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = SubResource("GDScript_wnsbk")
+
+[node name="StupidContainer" type="VBoxContainer" parent="CookMaster/Control2"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -806.0
+offset_top = 421.0
+offset_right = -339.0
+offset_bottom = 519.0
+grow_horizontal = 0
+
+[node name="Stupid1" parent="CookMaster/Control2/StupidContainer" instance=ExtResource("4_wf73i")]
+layout_mode = 2
+txt = "EGG COEFFICIENT:"
+color = Color(1, 0.22, 0.22, 1)
+cracked = false
+
+[node name="Stupid4" parent="CookMaster/Control2/StupidContainer" instance=ExtResource("4_wf73i")]
+layout_mode = 2
+txt = "BREAD POWER:     "
+color = Color(0.519, 1, 0.22, 1)
+cracked = false
+
+[node name="Stupid5" parent="CookMaster/Control2/StupidContainer" instance=ExtResource("4_wf73i")]
+layout_mode = 2
+txt = "SALT FUSION...:      "
+color = Color(0.22, 0.272, 1, 1)
+cracked = false
+
+[node name="Label" type="Label" parent="CookMaster/Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -139.0
+offset_top = -208.0
+offset_right = 136.0
+offset_bottom = -145.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "You are short on supplies...
+So you must approximate."
+label_settings = SubResource("LabelSettings_06xvv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="CookMaster/Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -140.0
+offset_top = -116.0
+offset_right = 147.0
+offset_bottom = -53.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "(Select %s more ingredients)"
+label_settings = SubResource("LabelSettings_06xvv")
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="HBoxContainer" type="HBoxContainer" parent="CookMaster/Control2"]
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -490.0
+offset_top = -46.0
+offset_right = 490.0
+offset_bottom = 46.0
+grow_horizontal = 2
+grow_vertical = 2
+scale = Vector2(1.425, 1.425)
+pivot_offset = Vector2(490, 47)
+alignment = 1
+
+[node name="Button1" parent="CookMaster/Control2/HBoxContainer" instance=ExtResource("4_inp7m")]
+layout_mode = 2
+ingredient_boost = [0.1, 0.3, 0.4]
+
+[node name="Button6" parent="CookMaster/Control2/HBoxContainer" instance=ExtResource("4_inp7m")]
+layout_mode = 2
+text = "Pepper"
+label = "Pepper"
+ingredient_boost = [0.4, 0.25, -0.1]
+
+[node name="Button7" parent="CookMaster/Control2/HBoxContainer" instance=ExtResource("4_inp7m")]
+layout_mode = 2
+text = "Fried Fish"
+label = "Fried Fish"
+ingredient_boost = [0.05, 0.3, 0.6]
+
+[node name="Button8" parent="CookMaster/Control2/HBoxContainer" instance=ExtResource("4_inp7m")]
+layout_mode = 2
+text = "Pill"
+label = "Pill"
+ingredient_boost = [0.5, 0.1, 0.1]
+
+[node name="Button9" parent="CookMaster/Control2/HBoxContainer" instance=ExtResource("4_inp7m")]
+layout_mode = 2
+text = "Ranch"
+label = "Ranch"
+ingredient_boost = [0.7, 0.1, 0.2]
+
+[node name="Music" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("3_be4c5")
+autoplay = true

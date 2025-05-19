@@ -1,4 +1,4 @@
-![screen-shot](https://github.com/fauxhaus/godot-intervals/blob/main/readme/banner.png)
+![screen-shot](https://github.com/dog-on-moon/godot-intervals/blob/main/readme/banner.png)
 
 # Godot Intervals
 
@@ -72,7 +72,7 @@ Events are a Resource which represent a blocking function call. They can be used
 
 Several Event flavors are provided out of the box, but you can extend Event directly to add any kind of complex action for your project. This pattern allows developers to use Events as the basis for a custom dialogue system, a visual novel engine, or (quite literally) anything that demands dynamic scripting.
 
-![screen-shot](https://github.com/fauxhaus/godot-intervals/blob/main/readme/pic01.png)
+![screen-shot](https://github.com/dog-on-moon/godot-intervals/blob/main/readme/pic01.png)
 
 ## Documentation
 

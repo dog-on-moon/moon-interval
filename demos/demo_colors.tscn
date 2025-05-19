@@ -325,35 +325,35 @@ initial_value = null
 [sub_resource type="Resource" id="Resource_r746a"]
 script = ExtResource("4_vxy25")
 resources = [SubResource("Resource_ocqe1"), SubResource("Resource_tppjc"), SubResource("Resource_47utp"), SubResource("Resource_jeh68"), SubResource("Resource_x6hkj"), SubResource("Resource_35oes"), SubResource("Resource_du3d6"), SubResource("Resource_501h4"), SubResource("Resource_vjqly"), SubResource("Resource_uhmtd"), SubResource("Resource_xctna"), SubResource("Resource_v6rwp"), SubResource("Resource_gk1es"), SubResource("Resource_c1vl8"), SubResource("Resource_vovbw"), SubResource("Resource_8by4s"), SubResource("Resource_h4udb"), SubResource("Resource_67kft"), SubResource("Resource_dhtnr"), SubResource("Resource_u5ufq"), SubResource("Resource_esx2u"), SubResource("Resource_ngrk8"), SubResource("Resource_md4fo"), SubResource("Resource_ypl5m"), SubResource("Resource_q1tpa"), SubResource("Resource_tlnfw"), SubResource("Resource_rbmes")]
-connections = [[SubResource("Resource_ocqe1"), 0, SubResource("Resource_tppjc"), 0], [SubResource("Resource_tppjc"), 0, SubResource("Resource_47utp"), 0], [SubResource("Resource_jeh68"), 0, SubResource("Resource_du3d6"), 0], [SubResource("Resource_vjqly"), 0, SubResource("Resource_501h4"), 0], [SubResource("Resource_uhmtd"), 0, SubResource("Resource_501h4"), 0], [SubResource("Resource_xctna"), 0, SubResource("Resource_501h4"), 0], [SubResource("Resource_v6rwp"), 0, SubResource("Resource_501h4"), 0], [SubResource("Resource_v6rwp"), 0, SubResource("Resource_gk1es"), 0], [SubResource("Resource_xctna"), 0, SubResource("Resource_c1vl8"), 0], [SubResource("Resource_uhmtd"), 0, SubResource("Resource_vovbw"), 0], [SubResource("Resource_vjqly"), 0, SubResource("Resource_8by4s"), 0], [SubResource("Resource_67kft"), 0, SubResource("Resource_dhtnr"), 0], [SubResource("Resource_501h4"), 0, SubResource("Resource_u5ufq"), 0], [SubResource("Resource_501h4"), 0, SubResource("Resource_esx2u"), 0], [SubResource("Resource_501h4"), 0, SubResource("Resource_h4udb"), 0], [SubResource("Resource_h4udb"), 0, SubResource("Resource_ngrk8"), 0], [SubResource("Resource_h4udb"), 0, SubResource("Resource_67kft"), 0], [SubResource("Resource_md4fo"), 0, SubResource("Resource_x6hkj"), 0], [SubResource("Resource_tppjc"), 0, SubResource("Resource_md4fo"), 0], [SubResource("Resource_md4fo"), 0, SubResource("Resource_ypl5m"), 0], [SubResource("Resource_ypl5m"), 0, SubResource("Resource_jeh68"), 0], [SubResource("Resource_jeh68"), 0, SubResource("Resource_q1tpa"), 0], [SubResource("Resource_q1tpa"), 1, SubResource("Resource_v6rwp"), 0], [SubResource("Resource_q1tpa"), 2, SubResource("Resource_xctna"), 0], [SubResource("Resource_q1tpa"), 3, SubResource("Resource_uhmtd"), 0], [SubResource("Resource_q1tpa"), 4, SubResource("Resource_vjqly"), 0], [SubResource("Resource_jeh68"), 0, SubResource("Resource_tlnfw"), 0], [SubResource("Resource_501h4"), 0, SubResource("Resource_rbmes"), 0]]
+connections = [[SubResource("Resource_ocqe1"), 0, SubResource("Resource_tppjc"), 0], [SubResource("Resource_tppjc"), 0, SubResource("Resource_47utp"), 0], [SubResource("Resource_jeh68"), 0, SubResource("Resource_du3d6"), 0], [SubResource("Resource_vjqly"), 0, SubResource("Resource_501h4"), 0], [SubResource("Resource_uhmtd"), 0, SubResource("Resource_501h4"), 0], [SubResource("Resource_xctna"), 0, SubResource("Resource_501h4"), 0], [SubResource("Resource_v6rwp"), 0, SubResource("Resource_501h4"), 0], [SubResource("Resource_v6rwp"), 0, SubResource("Resource_gk1es"), 0], [SubResource("Resource_xctna"), 0, SubResource("Resource_c1vl8"), 0], [SubResource("Resource_uhmtd"), 0, SubResource("Resource_vovbw"), 0], [SubResource("Resource_vjqly"), 0, SubResource("Resource_8by4s"), 0], [SubResource("Resource_67kft"), 0, SubResource("Resource_dhtnr"), 0], [SubResource("Resource_501h4"), 0, SubResource("Resource_u5ufq"), 0], [SubResource("Resource_501h4"), 0, SubResource("Resource_esx2u"), 0], [SubResource("Resource_501h4"), 0, SubResource("Resource_h4udb"), 0], [SubResource("Resource_h4udb"), 0, SubResource("Resource_ngrk8"), 0], [SubResource("Resource_h4udb"), 0, SubResource("Resource_67kft"), 0], [SubResource("Resource_md4fo"), 0, SubResource("Resource_x6hkj"), 0], [SubResource("Resource_tppjc"), 0, SubResource("Resource_md4fo"), 0], [SubResource("Resource_md4fo"), 0, SubResource("Resource_ypl5m"), 0], [SubResource("Resource_ypl5m"), 0, SubResource("Resource_jeh68"), 0], [SubResource("Resource_jeh68"), 0, SubResource("Resource_q1tpa"), 0], [SubResource("Resource_q1tpa"), 2, SubResource("Resource_xctna"), 0], [SubResource("Resource_q1tpa"), 3, SubResource("Resource_uhmtd"), 0], [SubResource("Resource_q1tpa"), 4, SubResource("Resource_vjqly"), 0], [SubResource("Resource_jeh68"), 0, SubResource("Resource_tlnfw"), 0], [SubResource("Resource_501h4"), 0, SubResource("Resource_rbmes"), 0], [SubResource("Resource_q1tpa"), 1, SubResource("Resource_v6rwp"), 0]]
 positions = {
-SubResource("Resource_rbmes"): Vector2(261, 247.5),
-SubResource("Resource_tlnfw"): Vector2(-439, 7.5),
-SubResource("Resource_501h4"): Vector2(21, 87.5),
-SubResource("Resource_vjqly"): Vector2(-219, -12.5),
-SubResource("Resource_uhmtd"): Vector2(-219, -92.5),
-SubResource("Resource_xctna"): Vector2(-219, -172.5),
-SubResource("Resource_v6rwp"): Vector2(-219, -252.5),
-SubResource("Resource_gk1es"): Vector2(21, -252.5),
-SubResource("Resource_c1vl8"): Vector2(21, -172.5),
-SubResource("Resource_vovbw"): Vector2(21, -92.5),
-SubResource("Resource_8by4s"): Vector2(21, -12.5),
-SubResource("Resource_h4udb"): Vector2(261, 87.5),
-SubResource("Resource_67kft"): Vector2(501, 87.5),
-SubResource("Resource_dhtnr"): Vector2(761, 87.5),
-SubResource("Resource_u5ufq"): Vector2(261, 147.5),
-SubResource("Resource_q1tpa"): Vector2(-439, -252.5),
-SubResource("Resource_ypl5m"): Vector2(-879, -72.5),
-SubResource("Resource_md4fo"): Vector2(-1119, -72.5),
-SubResource("Resource_ngrk8"): Vector2(501, 7.5),
-SubResource("Resource_esx2u"): Vector2(261, 7.5),
-SubResource("Resource_ocqe1"): Vector2(-1359, -152.5),
-SubResource("Resource_tppjc"): Vector2(-1359, -72.5),
-SubResource("Resource_47utp"): Vector2(-1139, -152.5),
-SubResource("Resource_jeh68"): Vector2(-659, -152.5),
-SubResource("Resource_x6hkj"): Vector2(-879, -152.5),
-SubResource("Resource_35oes"): Vector2(-1359, -232.5),
-SubResource("Resource_du3d6"): Vector2(-439, -92.5)
+SubResource("Resource_rbmes"): Vector2(-168.741, 125.63),
+SubResource("Resource_tlnfw"): Vector2(-868.741, -114.37),
+SubResource("Resource_501h4"): Vector2(-408.741, -34.3704),
+SubResource("Resource_vjqly"): Vector2(-648.741, -134.37),
+SubResource("Resource_uhmtd"): Vector2(-648.741, -214.37),
+SubResource("Resource_xctna"): Vector2(-648.741, -294.37),
+SubResource("Resource_v6rwp"): Vector2(-648.741, -374.37),
+SubResource("Resource_gk1es"): Vector2(-408.741, -374.37),
+SubResource("Resource_c1vl8"): Vector2(-408.741, -294.37),
+SubResource("Resource_vovbw"): Vector2(-408.741, -214.37),
+SubResource("Resource_8by4s"): Vector2(-408.741, -134.37),
+SubResource("Resource_h4udb"): Vector2(-168.741, -34.3704),
+SubResource("Resource_67kft"): Vector2(71.2593, -34.3704),
+SubResource("Resource_dhtnr"): Vector2(331.259, -34.3704),
+SubResource("Resource_u5ufq"): Vector2(-168.741, 25.6296),
+SubResource("Resource_q1tpa"): Vector2(-868.741, -374.37),
+SubResource("Resource_ypl5m"): Vector2(-1308.74, -194.37),
+SubResource("Resource_md4fo"): Vector2(-1548.74, -194.37),
+SubResource("Resource_ngrk8"): Vector2(71.2593, -114.37),
+SubResource("Resource_esx2u"): Vector2(-168.741, -114.37),
+SubResource("Resource_ocqe1"): Vector2(-1788.74, -274.37),
+SubResource("Resource_tppjc"): Vector2(-1788.74, -194.37),
+SubResource("Resource_47utp"): Vector2(-1568.74, -274.37),
+SubResource("Resource_jeh68"): Vector2(-1088.74, -274.37),
+SubResource("Resource_x6hkj"): Vector2(-1308.74, -274.37),
+SubResource("Resource_35oes"): Vector2(-1788.74, -354.37),
+SubResource("Resource_du3d6"): Vector2(-868.741, -214.37)
 }
 
 [sub_resource type="Resource" id="Resource_y4ogf"]
