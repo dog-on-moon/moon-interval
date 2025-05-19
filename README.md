@@ -1,6 +1,6 @@
 ![screen-shot](https://github.com/dog-on-moon/moon-interval/blob/main/readme/banner.png)
 
-# moon-interval
+# 🌙 moon-interval
 
 moon-interval is an animation plugin for Godot 4.4 designed to supplement both Tweens and AnimationPlayer by providing powerful, dynamic alternatives.
 This plugin is created based on what I felt was lacking from Godot in regards to efficient animation development, and I hope it will serve your purposes too.
