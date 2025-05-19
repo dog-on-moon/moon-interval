@@ -12,7 +12,7 @@ There are a couple routing rules for MultiEvents that must be kept in mind.
 
 An example MultiEvent (with routing edge-cases) is shown here:
 
-![screenshot](https://github.com/fauxhaus/godot-intervals/blob/main/docs/images/event_editor.png)
+![screenshot](https://github.com/dog-on-moon/moon-interval/blob/main/docs/images/event_editor.png)
 
 ## Creating Events
 

@@ -17,6 +17,25 @@ The complete list of built-in Intervals are listed below (note that it is easy t
 8. **Parallel** - Performs all of its sub-intervals simultaneously. *NOTE: A bug prevents us from nesting Sequences or Parallels inside other Parallels :(*
 9. **SequenceRandom** - Performs all of its sub-intervals in a random order.
 
+## ActiveInterval
+
+Instead of calling `Interval.as_tween`, you can call `Interval.start` for an `ActiveInterval` object.
+
+An ActiveInterval is a RefCounted container for a Tween. Upon losing reference, the Tween will automatically be cancelled.
+
+This can be used to automatically prevent multiple of the same kind of Tween from running in code.
+
+```
+## All ActiveIntervals must have a reference to them stored,
+## otherwise they will be immediately cleaned up!!
+var _flash_tween: ActiveInterval
+
+func add_score(x: int):
+	## Setting this value cleans up the last ActiveInterval assigned to _flash_tween,
+	## meaning only one flash Tween will ever be active.
+	_flash_tween = LerpProperty.setup(self, ^"modulate", 0.5, Color.WHITE).values(Color.YELLOW).start(self)
+```
+
 ## Interval vs. Tween
 
 The main advantage of Intervals is that they represent a Tween action as an object, making them more compatible with various programming patterns. The syntax of an Interval is easier to interpret than a Tween function call (especially with more complex Tweens), and can support nesting with Sequences and Parallels.
@@ -25,7 +44,7 @@ The main advantage of Intervals is that they represent a Tween action as an obje
 
 A common example of an Interval is to fade a CanvasItem's modulate. For individual Intervals, the similarity with Tweens is very apparent.
 
-![demo-gif](https://github.com/fauxhaus/godot-intervals/blob/main/docs/images/fade.gif)
+![demo-gif](https://github.com/dog-on-moon/moon-interval/blob/main/docs/images/fade.gif)
 
 ```gdscript
 ## Interval example
@@ -41,7 +60,7 @@ static func make_fade_tween(control: Control, duration := 0.5, alpha := 0.0) -> 
 
 You can use Tweens to batch dynamic UI movement together. Intervals can be grouped using Sequences and Parallels.
 
-![demo-gif](https://github.com/fauxhaus/godot-intervals/blob/main/docs/images/ui.gif)
+![demo-gif](https://github.com/dog-on-moon/moon-interval/blob/main/docs/images/ui.gif)
 
 ```gdscript
 ## Interval example
@@ -130,7 +149,7 @@ func _onto_tween(tween: Tween):
 
 This is a complex custom interval which implements projectile motion on a Node2D between start and end positions. The vertical arc is automatically calculated.
 
-![demo-gif](https://github.com/fauxhaus/godot-intervals/blob/main/docs/images/projectile.gif)
+![demo-gif](https://github.com/dog-on-moon/moon-interval/blob/main/docs/images/projectile.gif)
 
 ```gdscript
 extends Interval

@@ -1,4 +1,5 @@
 @tool
+@icon("res://addons/moon-interval/icons/play_audio_node.png")
 extends IntervalNode
 class_name PlayFmodNode
 ## Calls an Fmod event.

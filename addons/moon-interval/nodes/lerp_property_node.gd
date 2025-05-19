@@ -1,4 +1,5 @@
 @tool
+@icon("res://addons/moon-interval/icons/lerp_property_node.png")
 extends IntervalNode
 class_name LerpPropertyNode
 ## Interpolates a property, framed as a node.

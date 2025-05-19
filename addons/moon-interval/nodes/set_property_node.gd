@@ -1,4 +1,5 @@
 @tool
+@icon("res://addons/moon-interval/icons/set_property_node.png")
 extends IntervalNode
 class_name SetPropertyNode
 ## Sets a property on a node.

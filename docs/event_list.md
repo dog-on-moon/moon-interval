@@ -20,6 +20,10 @@ This document lists information about all built-in Events within the addon.
   - Will not emit done until a target signal is received.
 - `Modify State`
   - Modifies the state dictionary of the Event.
+- `Router: FuncBool`
+  - Calls a function on a node in the scene. Splits between two branches depending on if the function returns TRUE or FALSE.
+- `Router: Plays`
+  - Splits between different branches depending on how many times the EventPlayer has been called.
 - `Router: Random`
   - Selects a random branch.
 - `Router: Signal Multiplex`
@@ -52,8 +56,11 @@ This document lists information about all built-in Events within the addon.
 
 - `Callable`
   - Calls a function on any Node in the scene.
+  - Has a state equivalent, which calls a function from the state dictionary (set externally).
 - `Property`
   - Changes a property on any Node in the scene.
   - Can lerp between two values.
+  - Has a state equivalent, which sets a property on a node from the state dictionary (set externally).
 - `Signal`
   - Emits a signal on any Node in the scene.
+  - Has a state equivalent, which emits a signal on a node from the state dictionary (set externally).

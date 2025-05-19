@@ -8,7 +8,9 @@
 [ext_resource type="Script" uid="uid://cf8y2gbe10g4w" path="res://addons/moon-interval/nodes/wait_node.gd" id="6_lxkvl"]
 
 [node name="Ear" type="Sprite2D"]
+modulate = Color(1, 0.941059, 0.115879, 1)
 rotation = 6.28
+scale = Vector2(1.86612, 0.566942)
 texture = ExtResource("1_fdnsy")
 
 [node name="Animation" type="Node" parent="."]

@@ -1,4 +1,5 @@
 @tool
+@icon("res://addons/moon-interval/icons/wait_node.png")
 extends IntervalNode
 class_name WaitNode
 ## A node that simply waits and does nothing. Awesome

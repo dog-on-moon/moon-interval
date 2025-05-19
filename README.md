@@ -1,11 +1,14 @@
-![screen-shot](https://github.com/dog-on-moon/godot-intervals/blob/main/readme/banner.png)
+![screen-shot](https://github.com/dog-on-moon/moon-interval/blob/main/readme/banner.png)
 
-# Godot Intervals
+# moon-interval
 
-Intervals is an animation plugin for Godot 4.2.2+ designed to supplement both Tweens and AnimationPlayer by providing powerful, dynamic alternatives.
+moon-interval is an animation plugin for Godot 4.4 designed to supplement both Tweens and AnimationPlayer by providing powerful, dynamic alternatives.
 This plugin is created based on what I felt was lacking from Godot in regards to efficient animation development, and I hope it will serve your purposes too.
 
-The plugin features two separate, powerful libraries for animations: **Intervals** and **Events**.
+The plugin features three separate, powerful libraries for animations:
+1. **Intervals**, for complex, animated sequences within GDScript
+2. **Interval Nodes**, for  complex animated sequences within the Scene Tree
+3. **Events**, for dynamic, blocking, and branching visual scripting.
 
 ## ⏳ Intervals - developer-friendly Tweens
 
@@ -60,9 +63,21 @@ The complete list of built-in intervals are listed below (note that it is easy t
 4. **SetProperty** - Sets a property on a given object.
 5. **Wait** - Waits a certain amount of time. Equivalent to `tween.tween_interval(time)`.
 6. **Connect** - Connects a method to a signal.
-7. **Sequence** - Performs all of its sub-intervals in order.
-8. **Parallel** - Performs all of its sub-intervals simultaneously.
-9. **SequenceRandom** - Performs all of its sub-intervals in a random order.
+7. **ProjectileMove2D** - Moves a Node2D between two points, simulating gravity in between.
+8. **ProjectileMove3D** - Moves a Node3D between two points, simulating gravity in between.
+9. **Sequence** - Performs all of its sub-intervals in order.
+10. **Parallel** - Performs all of its sub-intervals simultaneously.
+11. **SequenceRandom** - Performs all of its sub-intervals in a random order.
+12. **TrackInterval** - Performs all of its sub-intervals at designated times.
+
+## 🛠️ Interval Nodes - verbose scene-tree animation
+
+Interval Nodes are another alternative to the AnimationPlayer, providing a verbose view of a complicated animation within the Scene Tree.
+
+Each node maps onto an existing tween function, and allows the animation of any node in the scene.
+They can also be individually controlled and previewed. Their playback is organized using Sequence and Parallel nodes.
+
+![video](https://github.com/dog-on-moon/moon-interval/blob/main/readme/nodes.mp4)
 
 ## ⏹️ Events - macroscopic building blocks
 
@@ -72,17 +87,19 @@ Events are a Resource which represent a blocking function call. They can be used
 
 Several Event flavors are provided out of the box, but you can extend Event directly to add any kind of complex action for your project. This pattern allows developers to use Events as the basis for a custom dialogue system, a visual novel engine, or (quite literally) anything that demands dynamic scripting.
 
-![screen-shot](https://github.com/dog-on-moon/godot-intervals/blob/main/readme/pic01.png)
+![screen-shot](https://github.com/dog-on-moon/moon-interval/blob/main/readme/pic01.png)
 
 ## Documentation
 
 For more information, check out my documentation here:
-- [Intervals](https://github.com/dog-on-moon/godot-intervals/tree/main/docs/intervals.md) - developer-friendly tweens
-- [Events](https://github.com/dog-on-moon/godot-intervals/tree/main/docs/events.md) - macroscopic building blocks
-- [List of Events](https://github.com/dog-on-moon/godot-intervals/tree/main/docs/event_list.md) - all default Events
-- [EventPlayer](https://github.com/dog-on-moon/godot-intervals/tree/main/docs/event_player.md) - the node which plays Events
-- [Event Editor](https://github.com/dog-on-moon/godot-intervals/tree/main/docs/event_editor.md) - the main interface for editing events
-- [EventPlayer](https://github.com/dog-on-moon/godot-intervals/tree/main/docs/graph_edit_2.md) - some information on the supplementary addon
+- [Intervals](https://github.com/dog-on-moon/moon-interval/tree/main/docs/intervals.md) - developer-friendly tweens
+- [Interval Nodes](https://github.com/dog-on-moon/moon-interval/tree/main/docs/interval_nodes.md) - verbose scene-tree animation
+- [Events](https://github.com/dog-on-moon/moon-interval/tree/main/docs/events.md) - macroscopic building blocks
+- [List of Events](https://github.com/dog-on-moon/moon-interval/tree/main/docs/event_list.md) - all default Events
+- [EventPlayer](https://github.com/dog-on-moon/moon-interval/tree/main/docs/event_player.md) - the node which plays Events
+- [Event Editor](https://github.com/dog-on-moon/moon-interval/tree/main/docs/event_editor.md) - the main interface for editing events
+- [EventPlayer](https://github.com/dog-on-moon/moon-interval/tree/main/docs/graph_edit_2.md) - some information on the supplementary addon
+
 
 The Godot project also comes with a couple of demos.
 
@@ -90,4 +107,4 @@ The Godot project also comes with a couple of demos.
 
 This repository contains the plugin for v4.3. Copy the contents of the `addons` folder into the `addons` folder in your own Godot project. Both `intervals` and `graphedit2` are required. Be sure to enable both plugins from Project Settings.
 
-For v4.2.2 support, please install the repository from [vabrador's fork.](https://github.com/vabrador/godot-intervals/tree/backport-4.2)
+For v4.2.2 support, please install the repository from [vabrador's fork.](https://github.com/vabrador/moon-interval/tree/backport-4.2)

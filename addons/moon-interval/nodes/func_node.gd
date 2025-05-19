@@ -1,4 +1,5 @@
 @tool
+@icon("res://addons/moon-interval/icons/func_node.png")
 extends IntervalNode
 class_name FuncNode
 ## Calls a func on a node.
