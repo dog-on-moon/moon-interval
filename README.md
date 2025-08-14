@@ -113,3 +113,8 @@ The Godot project also comes with a handful of demos.
 This repository contains the plugin for v4.4. Copy the contents of the `addons` folder into the `addons` folder in your own Godot project. Both `moon-interval` and `graphedit2` are required. Be sure to enable both plugins from Project Settings.
 
 For v4.2.2 support, please install the repository from [vabrador's fork.](https://github.com/vabrador/moon-interval/tree/backport-4.2)
+
+# Interval editor notice...
+
+If you intend on using the Interval Editor in this plugin, you will find that the seek functionality will be somewhat busted.
+Fixing seek requires you to fix your Godot build locally by implementing this fix: https://github.com/godotengine/godot/issues/109588
