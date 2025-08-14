@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://3gvk88v7y0di"]
+
+[ext_resource type="Script" uid="uid://bnwntie2g1ddy" path="res://addons/moon-interval/editor/interval/interval_edit_button.gd" id="2_utha4"]
+
+[node name="IntervalEditButton" type="Button"]
+offset_right = 12.0
+offset_bottom = 9.0
+theme_override_constants/icon_max_width = 16
+toggle_mode = true
+script = ExtResource("2_utha4")

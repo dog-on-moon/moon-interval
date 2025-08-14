@@ -119,7 +119,7 @@ func _property_valid() -> bool:
 
 func _on_inspect():
 	if node:
-		EditorInterface.inspect_object(node)
+		Engine.get_singleton(&"EditorInterface").inspect_object(node)
 
 func _validate_property(p: Dictionary):
 	if not _property_valid():

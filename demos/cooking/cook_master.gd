@@ -40,7 +40,7 @@ func start_game():
 	await get_tree().create_timer(1.0).timeout
 	game_machine.show()
 	game_machine.start()
-	var result: Array = await game_machine.result
+	var _result: Array = await game_machine.result
 	await get_tree().create_timer(1.0).timeout
 	var results: Container = game_machine.stop()
 	add_child(results)

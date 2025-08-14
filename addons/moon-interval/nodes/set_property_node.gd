@@ -32,10 +32,10 @@ func as_interval() -> Interval:
 
 func _editor_property():
 	if not node:
-		EditorInterface.popup_node_selector(_editor_node_result, [&"Node"], self)
+		Engine.get_singleton(&"EditorInterface").popup_node_selector(_editor_node_result, [&"Node"], self)
 		return
 	
-	EditorInterface.popup_property_selector(node, _editor_property_result)
+	Engine.get_singleton(&"EditorInterface").popup_property_selector(node, _editor_property_result)
 
 func _editor_property_result(np: NodePath):
 	if node:
@@ -44,7 +44,7 @@ func _editor_property_result(np: NodePath):
 func _editor_node_result(np: NodePath):
 	node = get_tree().edited_scene_root.get_node_or_null(np)
 	if not node:
-		EditorInterface.get_editor_toaster().push_toast("Can not pop up property editor (node is unset)", EditorToaster.SEVERITY_ERROR)
+		Engine.get_singleton(&"EditorInterface").get_editor_toaster().push_toast("Can not pop up property editor (node is unset)", Engine.get_singleton(&"EditorInterface").get_editor_toaster().SEVERITY_ERROR)
 	else:
 		_editor_property()
 

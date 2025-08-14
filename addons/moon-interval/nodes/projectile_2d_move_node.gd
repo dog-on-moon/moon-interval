@@ -13,8 +13,22 @@ class_name Projectile2DMoveNode
 @export var trans := Tween.TRANS_LINEAR
 
 func as_interval() -> Interval:
-	return Projectile2DMove.new(node, duration, _start, end, gravity, ease, trans)
+	var d := duration
+	var e := ease
+	var t := trans
+	var p := get_parent()
+	if p is IntervalContainerNode:
+		if p.has_duration_override():
+			d = p.duration_override
+		if p.has_ease_override():
+			e = p.ease_override
+		if p.has_trans_override():
+			t = p.trans_override
+	return Projectile2DMove.new(node, d, _start, end, gravity, e, t)
 
 func reset():
 	if node:
 		node.position = _start
+
+static func _get_editor_category() -> String:
+	return "2D"

@@ -55,6 +55,11 @@ static func calculate_pos(t: float, d: float, s: Vector3, e: Vector3, g: float) 
 	var _zpos := lerpf(s.z, e.z, t)
 	return Vector3(_xpos, _ypos, _zpos)
 
+func interp(ease := Tween.EASE_IN_OUT, trans := Tween.TRANS_LINEAR) -> Projectile3DMove:
+	self.ease = ease
+	self.trans = trans
+	return self
+
 func get_duration() -> float:
 	return duration
 

@@ -20,17 +20,17 @@ var autofinish := false
 
 ## The owner node in charge of the Tween held by the ActiveInterval.
 var owner: Node
-
 ## The original interval that created this ActiveInterval.
 var source_interval: Interval
 
+var speed_scale := 1.0
+
 ## The total duration of this interval
-var duration: float:
-	get: return source_interval.get_duration()
+var duration: float = 0.0
 
 ## How much time is remaining in this interval
 var time_remaining: float:
-	get: return max(duration - tween.get_total_elapsed_time(), 0.0)
+	get: return max(duration - (tween.get_total_elapsed_time() / speed_scale), 0.0)
 
 ## The tween created and contained by this ActiveInterval
 var tween: Tween
@@ -40,6 +40,7 @@ func _init(_owner: Node, _si: Interval, _tween: Tween, _autofinish := false) -> 
 	source_interval = _si
 	tween = _tween
 	autofinish = _autofinish
+	duration = source_interval.get_duration()
 	tween.finished.connect(finished.emit)
 	tween.loop_finished.connect(loop_finished.emit)
 	tween.step_finished.connect(step_finished.emit)
@@ -48,16 +49,16 @@ func _init(_owner: Node, _si: Interval, _tween: Tween, _autofinish := false) -> 
 ## to bring it to the end of its animation guaranteed.
 ## This function is automatically called when the ActiveInterval is killed to clean up
 ## the tween its tied to.
-func _kill_tween(t: Tween, _duration: float) -> void:
-	if t and t.is_valid():
+func _kill_tween() -> void:
+	if tween and tween.is_valid():
 		if autofinish:
-			t.custom_step(max(0.0, _duration - tween.get_total_elapsed_time()) + 0.01)
-		t.kill()
+			tween.custom_step(max(0.0, duration - tween.get_total_elapsed_time()) + 0.01)
+		tween.kill()
 
 ## Forces the tween to finish, skipping to the end.
 func finish():
 	autofinish = true
-	_kill_tween(tween, duration)
+	_kill_tween()
 	finished.emit()
 
 func set_time(t: float) -> ActiveInterval:
@@ -67,6 +68,14 @@ func set_time(t: float) -> ActiveInterval:
 func sync_time() -> ActiveInterval:
 	set_time(float(Time.get_ticks_msec()) * 0.001)
 	return self
+
+func _notification(what: int) -> void:
+	if what == NOTIFICATION_PREDELETE:
+		# inlining _kill_tween
+		if tween and tween.is_valid():
+			if autofinish:
+				tween.custom_step(max(0.0, duration - tween.get_total_elapsed_time()) + 0.01)
+			tween.kill()
 
 #region Tween Hooks
 # The following is here mostly for compatibility purposes with existing code.
@@ -143,6 +152,8 @@ func set_ease(ease: Tween.EaseType) -> ActiveInterval:
 ## Scales the speed of tweening. This affects all Tweeners and their delays.
 func set_speed_scale(speed: float) -> ActiveInterval:
 	tween.set_speed_scale(speed)
+	speed_scale = speed
+	duration = source_interval.get_duration() / speed_scale
 	return self
 
 ## If ignore is true, the tween will ignore Engine.time_scale and update with the real, elapsed time.
@@ -166,7 +177,3 @@ func set_loops(loops: int = 0) -> ActiveInterval:
 	return self
 
 #endregion
-
-func _notification(what: int) -> void:
-	if what == NOTIFICATION_PREDELETE:
-		_kill_tween(tween, duration)

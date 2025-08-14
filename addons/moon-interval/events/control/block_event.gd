@@ -66,5 +66,5 @@ func _editor_ready(_edit: GraphEdit, _element: GraphElement):
 
 func _on_inspect():
 	if event:
-		EditorInterface.inspect_object(event)
+		Engine.get_singleton(&"EditorInterface").inspect_object(event)
 #endregion

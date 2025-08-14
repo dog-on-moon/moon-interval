@@ -37,7 +37,18 @@ class_name LerpPropertyNode
 		notify_property_list_changed()
 
 func as_interval() -> Interval:
-	return LerpProperty.new(node, NodePath(property), duration, value, start_value if flags & 1 else null, flags & 2, ease, trans)
+	var d := duration
+	var e := ease
+	var t := trans
+	var p := get_parent()
+	if p is IntervalContainerNode:
+		if p.has_duration_override():
+			d = p.duration_override
+		if p.has_ease_override():
+			e = p.ease_override
+		if p.has_trans_override():
+			t = p.trans_override
+	return LerpProperty.new(node, NodePath(property), d, value, start_value if flags & 1 else null, flags & 2, e, t)
 
 func reset():
 	if node and flags & 1:
@@ -47,10 +58,10 @@ func reset():
 
 func _editor_property():
 	if not node:
-		EditorInterface.popup_node_selector(_editor_node_result, [&"Node"], self)
+		Engine.get_singleton(&"EditorInterface").popup_node_selector(_editor_node_result, [&"Node"], self)
 		return
 	
-	EditorInterface.popup_property_selector(node, _editor_property_result)
+	Engine.get_singleton(&"EditorInterface").popup_property_selector(node, _editor_property_result)
 
 func _editor_property_result(np: NodePath):
 	if node:
@@ -59,7 +70,7 @@ func _editor_property_result(np: NodePath):
 func _editor_node_result(np: NodePath):
 	node = get_tree().edited_scene_root.get_node_or_null(np)
 	if not node:
-		EditorInterface.get_editor_toaster().push_toast("Can not pop up property editor (node is unset)", EditorToaster.SEVERITY_ERROR)
+		Engine.get_singleton(&"EditorInterface").get_editor_toaster().push_toast("Can not pop up property editor (node is unset)", Engine.get_singleton(&"EditorInterface").get_editor_toaster().SEVERITY_ERROR)
 	else:
 		_editor_property()
 

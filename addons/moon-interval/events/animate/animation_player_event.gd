@@ -45,7 +45,7 @@ func _editor_ready(_edit: GraphEdit, _element: GraphElement):
 
 func _on_inspect():
 	if _node_exists():
-		EditorInterface.inspect_object(_editor_owner.get_node(animation_player_np))
+		Engine.get_singleton(&"EditorInterface").inspect_object(_editor_owner.get_node(animation_player_np))
 #endregion
 
 #region Node Finding Logic

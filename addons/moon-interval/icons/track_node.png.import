@@ -2,16 +2,16 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dmom1jgdwk6u7"
-path="res://.godot/imported/projectile_2d_move_node.png-8a76ba7e173131f1f59dc84869031857.ctex"
+uid="uid://clv63j12mdpym"
+path="res://.godot/imported/track_node.png-a69cff5b0da60b7b7d314309cef2c5e1.ctex"
 metadata={
 "vram_texture": false
 }
 
 [deps]
 
-source_file="res://addons/moon-interval/icons/projectile_2d_move_node.png"
-dest_files=["res://.godot/imported/projectile_2d_move_node.png-8a76ba7e173131f1f59dc84869031857.ctex"]
+source_file="res://addons/moon-interval/icons/track_node.png"
+dest_files=["res://.godot/imported/track_node.png-a69cff5b0da60b7b7d314309cef2c5e1.ctex"]
 
 [params]
 

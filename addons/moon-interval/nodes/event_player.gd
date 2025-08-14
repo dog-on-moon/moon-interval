@@ -23,9 +23,6 @@ var active := false
 var plays := 0
 
 func _ready() -> void:
-	# Prevent client server rotting
-	if multi_event:
-		multi_event = multi_event.clone(true)
 	if autoplay:
 		play()
 

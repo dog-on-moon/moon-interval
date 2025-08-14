@@ -5,9 +5,13 @@ extends EditorPlugin
 ## [dependent on graphedit2]
 
 const MultiEventEditor = preload("uid://2337ws3vaecv")
+const IntervalEditor = preload("res://addons/moon-interval/editor/interval/interval_editor.gd")
 
 var multi_event_editor: MultiEventEditor = null
 var multi_event_editor_button: Button = null
+
+var interval_editor: IntervalEditor = null
+var interval_editor_button: Button = null
 
 func _enter_tree():
 	const EVENT_PLAYER := preload("uid://bs7ckj12htwqh")
@@ -35,13 +39,15 @@ func _enter_tree():
 	## Nodes
 	add_custom_type("EventPlayer", "Node", preload("uid://blsus0wox3w7p"), EVENT_PLAYER)
 	
-	## MultiEvent Editor
-	_create_editor()
+	## Editors
+	_create_me_editor()
+	_create_i_editor()
 	
 	## Signals
-	EditorInterface.get_inspector().property_edited.connect(_property_selected)
-	EditorInterface.get_inspector().property_selected.connect(_property_selected)
-	EditorInterface.get_inspector().edited_object_changed.connect(_edited_object_changed)
+	Engine.get_singleton(&"EditorInterface").get_inspector().property_edited.connect(_property_selected)
+	Engine.get_singleton(&"EditorInterface").get_inspector().property_selected.connect(_property_selected)
+	Engine.get_singleton(&"EditorInterface").get_inspector().edited_object_changed.connect(_edited_object_changed)
+	scene_changed.connect(_scene_changed)
 
 func _exit_tree():
 	## Intervals
@@ -65,81 +71,142 @@ func _exit_tree():
 	## Nodes
 	remove_custom_type("EventPlayer")
 	
-	## MultiEvent Editor
-	_cleanup_editor()
+	## Editors
+	_cleanup_me_editor()
+	_cleanup_i_editor()
 	
 	## Signals
-	EditorInterface.get_inspector().property_edited.disconnect(_property_selected)
-	EditorInterface.get_inspector().property_selected.disconnect(_property_selected)
-	EditorInterface.get_inspector().edited_object_changed.disconnect(_edited_object_changed)
+	Engine.get_singleton(&"EditorInterface").get_inspector().property_edited.disconnect(_property_selected)
+	Engine.get_singleton(&"EditorInterface").get_inspector().property_selected.disconnect(_property_selected)
+	Engine.get_singleton(&"EditorInterface").get_inspector().edited_object_changed.disconnect(_edited_object_changed)
+	scene_changed.disconnect(_scene_changed)
 
 var _stored_object: WeakRef = null
 var _stored_property: String = ""
 
 func _property_selected(property: String):
-	var object := EditorInterface.get_inspector().get_edited_object()
-	var value := object.get(property)
+	var object = Engine.get_singleton(&"EditorInterface").get_inspector().get_edited_object()
+	var value: Variant = object.get(property)
 	if value is MultiEvent:
-		_show_editor(value)
+		_show_me_editor(value)
 	
 	# If the property we were observing to clears out, close the editor.
 	if _stored_object and _stored_object.get_ref() == object \
 		and property == _stored_property and value == null:
-		_hide_editor()
+		_hide_me_editor()
 	
 	_stored_object = weakref(object)
 	_stored_property = property
 
 func _edited_object_changed():
-	var object := EditorInterface.get_inspector().get_edited_object()
+	var object = Engine.get_singleton(&"EditorInterface").get_inspector().get_edited_object()
 	if object:
 		if object is EventPlayer and object.multi_event:
-			_show_editor(object.multi_event)
+			_show_me_editor(object.multi_event)
 			_stored_object = weakref(object)
 			_stored_property = "multi_event"
 		elif object is MultiEvent:
-			_show_editor(object)
+			_show_me_editor(object)
 			_stored_object = null
 			_stored_property = ""
-		elif object is not Event:
+		elif object is IntervalContainerNode:
+			_show_i_editor(object)
+		elif object is IntervalNode:
+			var n: Node = object
+			while true:
+				n = n.get_parent()
+				if n is IntervalContainerNode:
+					_show_i_editor(n)
+					break
+				elif n is not IntervalNode:
+					#_hide_i_editor()
+					break
+				elif n == get_tree().edited_scene_root:
+					#_hide_i_editor()
+					break
+		else:
+			#_hide_i_editor()
 			pass
-			# _hide_editor()
 	else:
-		_hide_editor()
+		_hide_me_editor()
+		#_hide_i_editor()
 
-func _show_editor(multi_event: MultiEvent):
+func _scene_changed(_root: Node):
+	_hide_i_editor()
+
+#################
+
+func _show_me_editor(multi_event: MultiEvent):
 	multi_event_editor.multi_event = multi_event
 	if not multi_event_editor_button.visible:
 		multi_event_editor_button.visible = true
 		multi_event_editor_button.button_pressed = true
 
-func _hide_editor():
+func _hide_me_editor():
 	multi_event_editor_button.button_pressed = false
 	multi_event_editor_button.visible = false
 	multi_event_editor.multi_event = null
 	_stored_object = null
 	_stored_property = ""
 
-func _create_editor():
+func _create_me_editor():
 	assert(not multi_event_editor)
-	multi_event_editor = load("uid://denrfwms0xkc7").instantiate()
+	multi_event_editor = load("res://addons/moon-interval/editor/multi_event/multi_event_editor.tscn").instantiate()
 	multi_event_editor.undo_redo = get_undo_redo()
 	multi_event_editor_button = add_control_to_bottom_panel(multi_event_editor, "MultiEvent")
 	multi_event_editor_button.visible = false
-	multi_event_editor.request_reload.connect(_reload_editor)
+	multi_event_editor.request_reload.connect(_reload_me_editor)
 
-func _cleanup_editor():
+func _cleanup_me_editor():
 	assert(multi_event_editor)
 	remove_control_from_bottom_panel(multi_event_editor)
 	multi_event_editor.queue_free()
 	multi_event_editor = null
 
-func _reload_editor():
+func _reload_me_editor():
 	var state: Dictionary = multi_event_editor._get_state()
-	_cleanup_editor()
-	_create_editor()
+	_cleanup_me_editor()
+	_create_me_editor()
 	multi_event_editor._set_state(state)
 	if not multi_event_editor_button.visible:
 		multi_event_editor_button.visible = true
 		multi_event_editor_button.button_pressed = true
 		multi_event_editor.graph_edit.recenter()
+
+#################
+
+func _show_i_editor(icn: IntervalContainerNode):
+	interval_editor.icn = icn
+	if not interval_editor_button.visible:
+		interval_editor_button.visible = true
+		interval_editor_button.button_pressed = true
+
+func _hide_i_editor():
+	interval_editor_button.button_pressed = false
+	interval_editor_button.visible = false
+	interval_editor.icn = null
+	_stored_object = null
+	_stored_property = ""
+
+func _create_i_editor():
+	assert(not interval_editor)
+	interval_editor = load("res://addons/moon-interval/editor/interval/interval_editor.tscn").instantiate()
+	interval_editor.undo_redo = get_undo_redo()
+	interval_editor_button = add_control_to_bottom_panel(interval_editor, "Interval")
+	interval_editor_button.visible = false
+	interval_editor.request_reload.connect(_reload_i_editor)
+
+func _cleanup_i_editor():
+	assert(interval_editor)
+	remove_control_from_bottom_panel(interval_editor)
+	interval_editor.queue_free()
+	interval_editor = null
+
+func _reload_i_editor():
+	var state: Dictionary = interval_editor._get_state()
+	_cleanup_i_editor()
+	_create_i_editor()
+	interval_editor._set_state(state)
+	if not interval_editor_button.visible:
+		interval_editor_button.visible = true
+		interval_editor_button.button_pressed = true

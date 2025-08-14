@@ -22,7 +22,15 @@ class_name FuncNode
 @export_tool_button("Set Function", "MemberProperty") var _editor_set := _editor_callback
 
 func as_interval() -> Interval:
-	assert(node.has_method(function))
+	if not node or not node.has_method(function):
+		return Wait.new()
+	
+	# don't queue_free in the editor ...
+	# you probably won't like this
+	if Engine.is_editor_hint():
+		if function == &"queue_free":
+			return Wait.new(0.0)
+	
 	var f: Callable = node[function]
 	return Func.new(f.bindv(arguments))
 
@@ -30,10 +38,10 @@ func as_interval() -> Interval:
 
 func _editor_callback():
 	if not node:
-		EditorInterface.popup_node_selector(_editor_node_result, [&"Node"], self)
+		Engine.get_singleton(&"EditorInterface").popup_node_selector(_editor_node_result, [&"Node"], self)
 		return
 	
-	EditorInterface.popup_method_selector(node, _editor_callback_result)
+	Engine.get_singleton(&"EditorInterface").popup_method_selector(node, _editor_callback_result)
 
 func _editor_callback_result(f: String):
 	if node:
@@ -42,7 +50,7 @@ func _editor_callback_result(f: String):
 func _editor_node_result(np: NodePath):
 	node = get_tree().edited_scene_root.get_node_or_null(np)
 	if not node:
-		EditorInterface.get_editor_toaster().push_toast("Can not pop up function editor (node is unset)", EditorToaster.SEVERITY_ERROR)
+		Engine.get_singleton(&"EditorInterface").get_editor_toaster().push_toast("Can not pop up function editor (node is unset)", Engine.get_singleton(&"EditorInterface").get_editor_toaster().SEVERITY_ERROR)
 	else:
 		_editor_callback()
 
