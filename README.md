@@ -7,7 +7,7 @@ This plugin is created based on what I felt was lacking from Godot in regards to
 
 The plugin features three separate, powerful libraries for animations:
 1. **Intervals**, for complex, animated sequences within GDScript
-2. **Interval Nodes**, for  complex animated sequences within the Scene Tree
+2. **Interval Nodes**, for complex animated sequences within the Scene Tree
 3. **Events**, for dynamic, blocking, and branching visual scripting.
 
 ## ⏳ Intervals - developer-friendly Tweens
@@ -79,6 +79,12 @@ They can also be individually controlled and previewed. Their playback is organi
 
 ![video](https://github.com/dog-on-moon/moon-interval/blob/main/docs/images/nodes.gif)
 
+Interval Nodes are also packaged with a powerful editor UI, making them easy to preview and develop with.
+It is straightforward to create custom Interval Nodes for your own purposes (such as character move nodes),
+so you could develop all kinds of animation utility for yourself.
+
+https://github.com/user-attachments/assets/9a85b5f0-dfc3-4ff7-8a43-b6c3283b79f5
+
 ## ⏹️ Events - macroscopic building blocks
 
 Compared to other visual scripting solutions, Events are macroscopic building blocks, allowing you to orchestrate code that you already know works. Where an AnimationPlayer is ideal for creating small, previewable animations, an EventPlayer is ideal for dynamic, branching cutscenes.
@@ -100,8 +106,7 @@ For more information, check out my documentation here:
 - [Event Editor](https://github.com/dog-on-moon/moon-interval/tree/main/docs/event_editor.md) - the main interface for editing events
 - [EventPlayer](https://github.com/dog-on-moon/moon-interval/tree/main/docs/graph_edit_2.md) - some information on the supplementary addon
 
-
-The Godot project also comes with a couple of demos.
+The Godot project also comes with a handful of demos.
 
 ## Installation
 
