@@ -92,6 +92,8 @@ func get_resource_position(resource: GraphElementResource) -> Vector2:
 	var idx := _get_resource_index(resource)
 	if idx == -1:
 		assert(false)
+		return Vector2.ZERO
+	return resource_positions[idx]
 
 ## Returns the index of a resource. Internal.
 func _get_resource_index(resource: GraphElementResource) -> int:
