@@ -131,33 +131,13 @@ duration = 1.0
 script = ExtResource("5_6hf1m")
 resources = [SubResource("Resource_wyr88"), SubResource("Resource_5eq87"), SubResource("Resource_fr535"), SubResource("Resource_yqjek"), SubResource("Resource_dp3ur"), SubResource("Resource_l22o1"), SubResource("Resource_gbhfq"), SubResource("Resource_qyoh3"), SubResource("Resource_hpxjo"), SubResource("Resource_pobxi"), SubResource("Resource_w5mai"), SubResource("Resource_iwxeh"), SubResource("Resource_rc4at"), SubResource("Resource_umxpn"), SubResource("Resource_bfs71"), SubResource("Resource_nulh3"), SubResource("Resource_07l63"), SubResource("Resource_6g55q")]
 connections = [[SubResource("Resource_wyr88"), 0, SubResource("Resource_5eq87"), 0], [SubResource("Resource_5eq87"), 0, SubResource("Resource_fr535"), 0], [SubResource("Resource_5eq87"), 0, SubResource("Resource_yqjek"), 0], [SubResource("Resource_fr535"), 0, SubResource("Resource_dp3ur"), 0], [SubResource("Resource_dp3ur"), 0, SubResource("Resource_l22o1"), 0], [SubResource("Resource_l22o1"), 0, SubResource("Resource_gbhfq"), 0], [SubResource("Resource_l22o1"), 0, SubResource("Resource_qyoh3"), 0], [SubResource("Resource_qyoh3"), 0, SubResource("Resource_hpxjo"), 0], [SubResource("Resource_hpxjo"), 0, SubResource("Resource_pobxi"), 0], [SubResource("Resource_hpxjo"), 0, SubResource("Resource_w5mai"), 0], [SubResource("Resource_w5mai"), 0, SubResource("Resource_iwxeh"), 0], [SubResource("Resource_iwxeh"), 0, SubResource("Resource_rc4at"), 0], [SubResource("Resource_rc4at"), 0, SubResource("Resource_umxpn"), 0], [SubResource("Resource_rc4at"), 0, SubResource("Resource_bfs71"), 0], [SubResource("Resource_umxpn"), 0, SubResource("Resource_nulh3"), 0], [SubResource("Resource_nulh3"), 0, SubResource("Resource_07l63"), 0], [SubResource("Resource_nulh3"), 0, SubResource("Resource_6g55q"), 0]]
-positions = {
-SubResource("Resource_6g55q"): Vector2(1418.97, 159.028),
-SubResource("Resource_07l63"): Vector2(1418.97, 319.028),
-SubResource("Resource_nulh3"): Vector2(1098.97, 159.028),
-SubResource("Resource_bfs71"): Vector2(798.968, 39.0276),
-SubResource("Resource_umxpn"): Vector2(798.968, 159.028),
-SubResource("Resource_rc4at"): Vector2(418.969, 39.0276),
-SubResource("Resource_iwxeh"): Vector2(-101.034, 39.0276),
-SubResource("Resource_w5mai"): Vector2(-381.033, 39.0276),
-SubResource("Resource_pobxi"): Vector2(-381.033, -140.972),
-SubResource("Resource_hpxjo"): Vector2(-841.034, -140.972),
-SubResource("Resource_qyoh3"): Vector2(-1281.02, -140.972),
-SubResource("Resource_gbhfq"): Vector2(-1281.02, -340.971),
-SubResource("Resource_l22o1"): Vector2(-1721.02, -340.971),
-SubResource("Resource_dp3ur"): Vector2(-2101.02, -340.971),
-SubResource("Resource_yqjek"): Vector2(-2521.02, -520.972),
-SubResource("Resource_fr535"): Vector2(-2521.02, -340.971),
-SubResource("Resource_5eq87"): Vector2(-3001.02, -520.972),
-SubResource("Resource_wyr88"): Vector2(-3381.03, -520.972)
-}
+resource_positions = [Vector2(-3381.03, -520.972), Vector2(-3001.02, -520.972), Vector2(-2521.02, -340.971), Vector2(-2521.02, -520.972), Vector2(-2101.02, -340.971), Vector2(-1721.02, -340.971), Vector2(-1281.02, -340.971), Vector2(-1281.02, -140.972), Vector2(-841.034, -140.972), Vector2(-381.033, -140.972), Vector2(-381.033, 39.0276), Vector2(-101.034, 39.0276), Vector2(418.969, 39.0276), Vector2(798.968, 159.028), Vector2(798.968, 39.0276), Vector2(1098.97, 159.028), Vector2(1418.97, 319.028), Vector2(1418.97, 159.028)]
 
 [sub_resource type="Resource" id="Resource_26j27"]
 resource_name = "Mission Statement"
 script = ExtResource("5_xyc0c")
 editor_data = SubResource("Resource_hwiab")
 cycles = true
-debug = false
 
 [node name="DemoDialog" type="Node" node_paths=PackedStringArray("event_player")]
 script = ExtResource("1_xvt66")

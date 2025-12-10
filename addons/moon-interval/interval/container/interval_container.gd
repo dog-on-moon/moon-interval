@@ -15,7 +15,10 @@ func append(ival: Interval):
 	intervals.append(ival)
 
 func get_duration() -> float:
-	return DogUtils.sum_array(intervals.map(func(x: Interval): return x.get_duration())) if intervals else 0.0
+	var d: float = 0.0
+	for i: Interval in intervals:
+		d += i.get_duration()
+	return d
 
 ## Sets the interp of child containers.
 func interp(ease := Tween.EASE_IN_OUT, trans := Tween.TRANS_LINEAR) -> IntervalContainer:
@@ -23,4 +26,3 @@ func interp(ease := Tween.EASE_IN_OUT, trans := Tween.TRANS_LINEAR) -> IntervalC
 		if i.has_method(&"interp"):
 			i.call(&"interp", ease, trans)
 	return self
-

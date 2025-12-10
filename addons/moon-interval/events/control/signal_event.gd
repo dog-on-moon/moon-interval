@@ -79,8 +79,8 @@ static func _editor_find_node_script(substr: String, node: Node, open := false) 
 			var line: String = lines[i]
 			if line == substr or line.find(substr + "(") != -1:
 				if open:
-					DogUtils.editor_interface.set_main_screen_editor("Script")
-					DogUtils.editor_interface.edit_script(node.get_script(), i + 1)
+					Engine.get_singleton(&"EditorInterface").set_main_screen_editor("Script")
+					Engine.get_singleton(&"EditorInterface").edit_script(node.get_script(), i + 1)
 				return true
 	return false
 #endregion

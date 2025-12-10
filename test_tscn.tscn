@@ -27,9 +27,6 @@ func test(extra := \"\"):
 
 [sub_resource type="Resource" id="Resource_5oe1o"]
 script = ExtResource("2_i2gb4")
-animation_player_np = NodePath("")
-animation_name = &""
-blocking = true
 
 [sub_resource type="Resource" id="Resource_1fus8"]
 script = ExtResource("7_ee433")
@@ -38,15 +35,9 @@ signal_name = &""
 
 [sub_resource type="Resource" id="Resource_rowbu"]
 script = ExtResource("2_i2gb4")
-animation_player_np = NodePath("")
-animation_name = &""
-blocking = true
 
 [sub_resource type="Resource" id="Resource_6iky2"]
 script = ExtResource("2_i2gb4")
-animation_player_np = NodePath("")
-animation_name = &""
-blocking = true
 
 [sub_resource type="Resource" id="Resource_bkslh"]
 script = ExtResource("12_g1ey3")
@@ -55,32 +46,19 @@ script = ExtResource("12_g1ey3")
 script = ExtResource("2_coj0g")
 resources = [SubResource("Resource_5oe1o"), SubResource("Resource_1fus8"), SubResource("Resource_rowbu"), SubResource("Resource_6iky2"), SubResource("Resource_bkslh")]
 connections = [[SubResource("Resource_5oe1o"), 0, SubResource("Resource_1fus8"), 0], [SubResource("Resource_5oe1o"), 0, SubResource("Resource_rowbu"), 0], [SubResource("Resource_5oe1o"), 0, SubResource("Resource_6iky2"), 0], [SubResource("Resource_rowbu"), 0, SubResource("Resource_bkslh"), 0], [SubResource("Resource_6iky2"), 0, SubResource("Resource_bkslh"), 0]]
-positions = {
-SubResource("Resource_5oe1o"): Vector2(-596.5, -121),
-SubResource("Resource_1fus8"): Vector2(-376.5, -121),
-SubResource("Resource_rowbu"): Vector2(-364.5, -22),
-SubResource("Resource_6iky2"): Vector2(-364.5, 58),
-SubResource("Resource_bkslh"): Vector2(-84.5, -42)
-}
+resource_positions = [Vector2(-596.5, -121), Vector2(-376.5, -121), Vector2(-364.5, -22), Vector2(-364.5, 58), Vector2(-84.5, -42)]
 
 [sub_resource type="Resource" id="Resource_g1r78"]
 resource_name = "everything all at once"
 script = ExtResource("4_a4xyj")
 editor_data = SubResource("Resource_bylcc")
-cycles = false
-debug = false
 
 [sub_resource type="Resource" id="Resource_tiumn"]
 script = ExtResource("2_i2gb4")
 animation_player_np = NodePath("AnimationPlayer")
-animation_name = &""
-blocking = true
 
 [sub_resource type="Resource" id="Resource_0eqd7"]
 script = ExtResource("2_i2gb4")
-animation_player_np = NodePath("")
-animation_name = &""
-blocking = true
 
 [sub_resource type="Resource" id="Resource_ewacp"]
 script = ExtResource("5_7cnsf")
@@ -104,7 +82,6 @@ signal_name = &"blam"
 
 [sub_resource type="Resource" id="Resource_cg33c"]
 script = ExtResource("9_ygn35")
-event = SubResource("Resource_d7ojt")
 
 [sub_resource type="Resource" id="Resource_w3j8q"]
 script = ExtResource("10_ol2kp")
@@ -137,29 +114,11 @@ script = ExtResource("15_4saej")
 script = ExtResource("2_coj0g")
 resources = [SubResource("Resource_g1r78"), SubResource("Resource_tiumn"), SubResource("Resource_ewacp"), SubResource("Resource_0eqd7"), SubResource("Resource_h6l2q"), SubResource("Resource_d7ojt"), SubResource("Resource_cgm72"), SubResource("Resource_cg33c"), SubResource("Resource_w3j8q"), SubResource("Resource_uj83l"), SubResource("Resource_ejl0b"), SubResource("Resource_gpr7c"), SubResource("Resource_7qynu"), SubResource("Resource_cas57"), SubResource("Resource_up525")]
 connections = [[SubResource("Resource_g1r78"), 0, SubResource("Resource_tiumn"), 0], [SubResource("Resource_tiumn"), 0, SubResource("Resource_0eqd7"), 0], [SubResource("Resource_0eqd7"), 0, SubResource("Resource_ewacp"), 0], [SubResource("Resource_d7ojt"), 0, SubResource("Resource_h6l2q"), 0], [SubResource("Resource_cgm72"), 0, SubResource("Resource_h6l2q"), 0], [SubResource("Resource_g1r78"), 1, SubResource("Resource_d7ojt"), 0], [SubResource("Resource_g1r78"), 1, SubResource("Resource_cgm72"), 0], [SubResource("Resource_cgm72"), 0, SubResource("Resource_cg33c"), 0], [SubResource("Resource_cgm72"), 0, SubResource("Resource_w3j8q"), 0], [SubResource("Resource_uj83l"), 0, SubResource("Resource_ejl0b"), 0], [SubResource("Resource_ewacp"), 0, SubResource("Resource_gpr7c"), 0], [SubResource("Resource_w3j8q"), 0, SubResource("Resource_7qynu"), 0], [SubResource("Resource_cas57"), 0, SubResource("Resource_up525"), 0], [SubResource("Resource_cg33c"), 0, SubResource("Resource_uj83l"), 0]]
-positions = {
-SubResource("Resource_g1r78"): Vector2(-529.169, -317.673),
-SubResource("Resource_tiumn"): Vector2(-289.169, -317.673),
-SubResource("Resource_ewacp"): Vector2(190.831, -317.673),
-SubResource("Resource_0eqd7"): Vector2(-49.1693, -317.673),
-SubResource("Resource_h6l2q"): Vector2(-49.1693, -237.673),
-SubResource("Resource_d7ojt"): Vector2(-289.169, -237.673),
-SubResource("Resource_cgm72"): Vector2(-289.169, -157.673),
-SubResource("Resource_cg33c"): Vector2(-49.1693, -157.673),
-SubResource("Resource_w3j8q"): Vector2(-49.1693, -57.6733),
-SubResource("Resource_uj83l"): Vector2(190.831, -237.673),
-SubResource("Resource_ejl0b"): Vector2(430.831, -237.673),
-SubResource("Resource_gpr7c"): Vector2(430.831, -317.673),
-SubResource("Resource_7qynu"): Vector2(470.831, -97.673),
-SubResource("Resource_cas57"): Vector2(-599.649, -79.1243),
-SubResource("Resource_up525"): Vector2(-39.6493, 20.8757)
-}
+resource_positions = [Vector2(-529.169, -317.673), Vector2(-289.169, -317.673), Vector2(190.831, -317.673), Vector2(-49.1693, -317.673), Vector2(-49.1693, -237.673), Vector2(-289.169, -237.673), Vector2(-289.169, -157.673), Vector2(-49.1693, -157.673), Vector2(-49.1693, -57.6733), Vector2(190.831, -237.673), Vector2(430.831, -237.673), Vector2(430.831, -317.673), Vector2(470.831, -97.673), Vector2(-599.649, -79.1243), Vector2(-39.6493, 20.8757)]
 
 [sub_resource type="Resource" id="Resource_qc5ex"]
 script = ExtResource("4_a4xyj")
 editor_data = SubResource("Resource_ommmu")
-cycles = false
-debug = false
 
 [node name="Node" type="Node"]
 script = SubResource("GDScript_gyeig")

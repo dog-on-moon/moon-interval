@@ -326,42 +326,12 @@ initial_value = null
 script = ExtResource("4_vxy25")
 resources = [SubResource("Resource_ocqe1"), SubResource("Resource_tppjc"), SubResource("Resource_47utp"), SubResource("Resource_jeh68"), SubResource("Resource_x6hkj"), SubResource("Resource_35oes"), SubResource("Resource_du3d6"), SubResource("Resource_501h4"), SubResource("Resource_vjqly"), SubResource("Resource_uhmtd"), SubResource("Resource_xctna"), SubResource("Resource_v6rwp"), SubResource("Resource_gk1es"), SubResource("Resource_c1vl8"), SubResource("Resource_vovbw"), SubResource("Resource_8by4s"), SubResource("Resource_h4udb"), SubResource("Resource_67kft"), SubResource("Resource_dhtnr"), SubResource("Resource_u5ufq"), SubResource("Resource_esx2u"), SubResource("Resource_ngrk8"), SubResource("Resource_md4fo"), SubResource("Resource_ypl5m"), SubResource("Resource_q1tpa"), SubResource("Resource_tlnfw"), SubResource("Resource_rbmes")]
 connections = [[SubResource("Resource_ocqe1"), 0, SubResource("Resource_tppjc"), 0], [SubResource("Resource_tppjc"), 0, SubResource("Resource_47utp"), 0], [SubResource("Resource_jeh68"), 0, SubResource("Resource_du3d6"), 0], [SubResource("Resource_vjqly"), 0, SubResource("Resource_501h4"), 0], [SubResource("Resource_uhmtd"), 0, SubResource("Resource_501h4"), 0], [SubResource("Resource_xctna"), 0, SubResource("Resource_501h4"), 0], [SubResource("Resource_v6rwp"), 0, SubResource("Resource_501h4"), 0], [SubResource("Resource_v6rwp"), 0, SubResource("Resource_gk1es"), 0], [SubResource("Resource_xctna"), 0, SubResource("Resource_c1vl8"), 0], [SubResource("Resource_uhmtd"), 0, SubResource("Resource_vovbw"), 0], [SubResource("Resource_vjqly"), 0, SubResource("Resource_8by4s"), 0], [SubResource("Resource_67kft"), 0, SubResource("Resource_dhtnr"), 0], [SubResource("Resource_501h4"), 0, SubResource("Resource_u5ufq"), 0], [SubResource("Resource_501h4"), 0, SubResource("Resource_esx2u"), 0], [SubResource("Resource_501h4"), 0, SubResource("Resource_h4udb"), 0], [SubResource("Resource_h4udb"), 0, SubResource("Resource_ngrk8"), 0], [SubResource("Resource_h4udb"), 0, SubResource("Resource_67kft"), 0], [SubResource("Resource_md4fo"), 0, SubResource("Resource_x6hkj"), 0], [SubResource("Resource_tppjc"), 0, SubResource("Resource_md4fo"), 0], [SubResource("Resource_md4fo"), 0, SubResource("Resource_ypl5m"), 0], [SubResource("Resource_ypl5m"), 0, SubResource("Resource_jeh68"), 0], [SubResource("Resource_jeh68"), 0, SubResource("Resource_q1tpa"), 0], [SubResource("Resource_q1tpa"), 2, SubResource("Resource_xctna"), 0], [SubResource("Resource_q1tpa"), 3, SubResource("Resource_uhmtd"), 0], [SubResource("Resource_q1tpa"), 4, SubResource("Resource_vjqly"), 0], [SubResource("Resource_jeh68"), 0, SubResource("Resource_tlnfw"), 0], [SubResource("Resource_501h4"), 0, SubResource("Resource_rbmes"), 0], [SubResource("Resource_q1tpa"), 1, SubResource("Resource_v6rwp"), 0]]
-positions = {
-SubResource("Resource_rbmes"): Vector2(-168.741, 125.63),
-SubResource("Resource_tlnfw"): Vector2(-868.741, -114.37),
-SubResource("Resource_501h4"): Vector2(-408.741, -34.3704),
-SubResource("Resource_vjqly"): Vector2(-648.741, -134.37),
-SubResource("Resource_uhmtd"): Vector2(-648.741, -214.37),
-SubResource("Resource_xctna"): Vector2(-648.741, -294.37),
-SubResource("Resource_v6rwp"): Vector2(-648.741, -374.37),
-SubResource("Resource_gk1es"): Vector2(-408.741, -374.37),
-SubResource("Resource_c1vl8"): Vector2(-408.741, -294.37),
-SubResource("Resource_vovbw"): Vector2(-408.741, -214.37),
-SubResource("Resource_8by4s"): Vector2(-408.741, -134.37),
-SubResource("Resource_h4udb"): Vector2(-168.741, -34.3704),
-SubResource("Resource_67kft"): Vector2(71.2593, -34.3704),
-SubResource("Resource_dhtnr"): Vector2(331.259, -34.3704),
-SubResource("Resource_u5ufq"): Vector2(-168.741, 25.6296),
-SubResource("Resource_q1tpa"): Vector2(-868.741, -374.37),
-SubResource("Resource_ypl5m"): Vector2(-1308.74, -194.37),
-SubResource("Resource_md4fo"): Vector2(-1548.74, -194.37),
-SubResource("Resource_ngrk8"): Vector2(71.2593, -114.37),
-SubResource("Resource_esx2u"): Vector2(-168.741, -114.37),
-SubResource("Resource_ocqe1"): Vector2(-1788.74, -274.37),
-SubResource("Resource_tppjc"): Vector2(-1788.74, -194.37),
-SubResource("Resource_47utp"): Vector2(-1568.74, -274.37),
-SubResource("Resource_jeh68"): Vector2(-1088.74, -274.37),
-SubResource("Resource_x6hkj"): Vector2(-1308.74, -274.37),
-SubResource("Resource_35oes"): Vector2(-1788.74, -354.37),
-SubResource("Resource_du3d6"): Vector2(-868.741, -214.37)
-}
+resource_positions = [Vector2(-1788.74, -274.37), Vector2(-1788.74, -194.37), Vector2(-1568.74, -274.37), Vector2(-1088.74, -274.37), Vector2(-1308.74, -274.37), Vector2(-1788.74, -354.37), Vector2(-868.741, -214.37), Vector2(-408.741, -34.3704), Vector2(-648.741, -134.37), Vector2(-648.741, -214.37), Vector2(-648.741, -294.37), Vector2(-648.741, -374.37), Vector2(-408.741, -374.37), Vector2(-408.741, -294.37), Vector2(-408.741, -214.37), Vector2(-408.741, -134.37), Vector2(-168.741, -34.3704), Vector2(71.2593, -34.3704), Vector2(331.259, -34.3704), Vector2(-168.741, 25.6296), Vector2(-168.741, -114.37), Vector2(71.2593, -114.37), Vector2(-1548.74, -194.37), Vector2(-1308.74, -194.37), Vector2(-868.741, -374.37), Vector2(-868.741, -114.37), Vector2(-168.741, 125.63)]
 
 [sub_resource type="Resource" id="Resource_y4ogf"]
 resource_name = "Color Chooser"
 script = ExtResource("5_wowsj")
 editor_data = SubResource("Resource_r746a")
-cycles = false
-debug = false
 
 [node name="DemoColors" type="Node" node_paths=PackedStringArray("event_player")]
 script = ExtResource("1_xvvey")
@@ -407,68 +377,68 @@ theme_override_constants/separation = 64
 [node name="RedButton" type="Button" parent="Background/ColorRoot/Mover/HBoxContainer"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxFlat_7qkha")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_7qkha")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_7qkha")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_7qkha")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_7qkha")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_7qkha")
-theme_override_styles/hover = SubResource("StyleBoxFlat_7qkha")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_7qkha")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_7qkha")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_7qkha")
 theme_override_styles/normal = SubResource("StyleBoxFlat_7qkha")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_7qkha")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_7qkha")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_7qkha")
+theme_override_styles/hover = SubResource("StyleBoxFlat_7qkha")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_7qkha")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_7qkha")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_7qkha")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_7qkha")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_7qkha")
+theme_override_styles/focus = SubResource("StyleBoxFlat_7qkha")
 script = ExtResource("3_mowfk")
 color = Color(1, 0.34, 0.34, 1)
 
 [node name="GreenButton" type="Button" parent="Background/ColorRoot/Mover/HBoxContainer"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxFlat_x7byh")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_x7byh")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_x7byh")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_x7byh")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_x7byh")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_x7byh")
-theme_override_styles/hover = SubResource("StyleBoxFlat_x7byh")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_x7byh")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_x7byh")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_x7byh")
 theme_override_styles/normal = SubResource("StyleBoxFlat_x7byh")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_x7byh")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_x7byh")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_x7byh")
+theme_override_styles/hover = SubResource("StyleBoxFlat_x7byh")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_x7byh")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_x7byh")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_x7byh")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_x7byh")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_x7byh")
+theme_override_styles/focus = SubResource("StyleBoxFlat_x7byh")
 script = ExtResource("3_mowfk")
 color = Color(0.417, 1, 0.34, 1)
 
 [node name="BlueButton" type="Button" parent="Background/ColorRoot/Mover/HBoxContainer"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxFlat_wwgvv")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_wwgvv")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_wwgvv")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_wwgvv")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_wwgvv")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_wwgvv")
-theme_override_styles/hover = SubResource("StyleBoxFlat_wwgvv")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_wwgvv")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_wwgvv")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_wwgvv")
 theme_override_styles/normal = SubResource("StyleBoxFlat_wwgvv")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_wwgvv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_wwgvv")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_wwgvv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_wwgvv")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_wwgvv")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_wwgvv")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_wwgvv")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_wwgvv")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_wwgvv")
+theme_override_styles/focus = SubResource("StyleBoxFlat_wwgvv")
 script = ExtResource("3_mowfk")
 color = Color(0.34, 0.604, 1, 1)
 
 [node name="PinkButton" type="Button" parent="Background/ColorRoot/Mover/HBoxContainer"]
 custom_minimum_size = Vector2(128, 128)
 layout_mode = 2
-theme_override_styles/focus = SubResource("StyleBoxFlat_ajauv")
-theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_ajauv")
-theme_override_styles/disabled = SubResource("StyleBoxFlat_ajauv")
-theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_ajauv")
-theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_ajauv")
-theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_ajauv")
-theme_override_styles/hover = SubResource("StyleBoxFlat_ajauv")
-theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_ajauv")
-theme_override_styles/pressed = SubResource("StyleBoxFlat_ajauv")
-theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_ajauv")
 theme_override_styles/normal = SubResource("StyleBoxFlat_ajauv")
+theme_override_styles/normal_mirrored = SubResource("StyleBoxFlat_ajauv")
+theme_override_styles/pressed = SubResource("StyleBoxFlat_ajauv")
+theme_override_styles/pressed_mirrored = SubResource("StyleBoxFlat_ajauv")
+theme_override_styles/hover = SubResource("StyleBoxFlat_ajauv")
+theme_override_styles/hover_mirrored = SubResource("StyleBoxFlat_ajauv")
+theme_override_styles/hover_pressed = SubResource("StyleBoxFlat_ajauv")
+theme_override_styles/hover_pressed_mirrored = SubResource("StyleBoxFlat_ajauv")
+theme_override_styles/disabled = SubResource("StyleBoxFlat_ajauv")
+theme_override_styles/disabled_mirrored = SubResource("StyleBoxFlat_ajauv")
+theme_override_styles/focus = SubResource("StyleBoxFlat_ajauv")
 script = ExtResource("3_mowfk")
 color = Color(1, 0.34, 0.967, 1)
 

@@ -61,7 +61,7 @@ outline_color = Color(0.25, 0.133333, 0, 1)
 
 [sub_resource type="LabelSettings" id="LabelSettings_dd2h2"]
 font_size = 81
-outline_size = 47
+outline_size = 50
 outline_color = Color(0.25, 0.229, 0.11, 1)
 shadow_color = Color(1, 0, 0, 0)
 
@@ -198,7 +198,7 @@ color = Color(0.09, 0.0225, 0.0225, 1)
 
 [node name="LightMachine" type="Node2D" parent="CookMaster/World"]
 position = Vector2(576, 324)
-rotation = 1820.66
+rotation = 1820.8008
 script = SubResource("GDScript_peeba")
 
 [node name="PointLight2D" type="PointLight2D" parent="CookMaster/World/LightMachine"]
@@ -306,7 +306,7 @@ offset_right = 96.0
 offset_bottom = -98.0
 grow_horizontal = 2
 grow_vertical = 0
-scale = Vector2(2.02233, 2.02233)
+scale = Vector2(2.032943, 2.032943)
 pivot_offset = Vector2(99, 12)
 text = "Press any key to cook"
 horizontal_alignment = 1

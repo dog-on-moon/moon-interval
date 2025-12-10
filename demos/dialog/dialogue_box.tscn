@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://bti5ltblc0k1f"]
 
 [ext_resource type="Theme" uid="uid://bx5cajk44783o" path="res://demos/dialog/dialogue_theme.tres" id="1_5csfk"]
-[ext_resource type="Script" path="res://demos/dialog/dialogue_box.gd" id="1_8ofi0"]
+[ext_resource type="Script" uid="uid://cls08pwfuqlwy" path="res://demos/dialog/dialogue_box.gd" id="1_8ofi0"]
 
 [node name="DialogueBox" type="Control"]
 custom_minimum_size = Vector2(20, 30)

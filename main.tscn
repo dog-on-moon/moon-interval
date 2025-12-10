@@ -98,16 +98,11 @@ animation_name = &"move"
 script = ExtResource("6_klsph")
 resources = [SubResource("Resource_ku2so"), SubResource("Resource_waci5")]
 connections = [[SubResource("Resource_ku2so"), 0, SubResource("Resource_waci5"), 0]]
-positions = {
-SubResource("Resource_ku2so"): Vector2(148, 98),
-SubResource("Resource_waci5"): Vector2(408, 98)
-}
+resource_positions = [Vector2(148, 98), Vector2(408, 98)]
 
 [sub_resource type="Resource" id="Resource_grabb"]
 script = ExtResource("7_0cu5c")
 editor_data = SubResource("Resource_wgh3s")
-cycles = false
-debug = false
 
 [node name="Main" type="Control"]
 layout_mode = 3
