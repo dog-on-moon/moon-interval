@@ -14,23 +14,39 @@ signal editor_refresh
 ## A connection is [from_resource, from_port, to_resource, to_port]
 @export_storage var connections: Array = []
 
-## Editor storage for resource positions.
-## Dictionary[Resource, Vector2]
-@export_storage var positions := {}
+## Positions of each resource. Uses the same indexes as resources.
+@export var resource_positions: Array = []
+
+@export_storage var positions: Dictionary:
+	set(x):
+		# Compatability support, this parameter is no longer used.
+		if x:
+			# Safe port: ensure the resource positions array has some data.
+			resource_positions.resize(resources.size())
+			for idx in resources.size():
+				resource_positions[idx] = Vector2.ZERO
+			
+			# Stronger port: try to port old position values.
+			if resources.size() == x.size():
+				for idx: int in resources.size():
+					resource_positions[idx] = x.get(resources[idx], Vector2.ZERO)
 
 ## Adds a resource. Must be unique.
 func add_resource(resource: GraphElementResource, position: Vector2 = Vector2.ZERO):
 	assert(resource not in resources)
 	resource._enter()
 	resources.append(resource)
-	positions[resource] = _validate_position(position)
+	resource_positions.append(_validate_position(position))
 	editor_refresh.emit()
 
 ## Removes a resource.
 func remove_resource(resource: GraphElementResource):
-	assert(resource in resources)
+	var idx := _get_resource_index(resource)
+	if idx == -1:
+		assert(false)
+		return
 	resources.erase(resource)
-	positions.erase(resource)
+	resource_positions.remove_at(idx)
 	for c in connections.duplicate():
 		if resource == c[0] or resource == c[2]:
 			connections.erase(c)
@@ -64,10 +80,22 @@ func disconnect_resources(from_resource, from_port: int, to_resource, to_port: i
 
 ## Stores the XY position of the event node in the editor.
 func move_resource(resource: GraphElementResource, position: Vector2):
-	assert(resource in resources)
-	if not positions[resource].is_equal_approx(position):
-		positions[resource] = position
+	var idx := _get_resource_index(resource)
+	if idx == -1:
+		return null
+	if not resource_positions[idx].is_equal_approx(position):
+		resource_positions[idx] = position
 		editor_refresh.emit()
+
+## Gets the position of a resource in the editor.
+func get_resource_position(resource: GraphElementResource) -> Vector2:
+	var idx := _get_resource_index(resource)
+	if idx == -1:
+		assert(false)
+
+## Returns the index of a resource. Internal.
+func _get_resource_index(resource: GraphElementResource) -> int:
+	return resources.find(resource)
 
 ## Returns the resources connected to each input port.
 ## Input is type GraphNodeResource
@@ -129,7 +157,7 @@ func _validate_position(pos: Vector2) -> Vector2:
 	var pos_check := true
 	while pos_check:
 		pos_check = false
-		for other_p in positions.values():
+		for other_p in resource_positions:
 			if pos.is_equal_approx(other_p):
 				pos += Vector2(32, 32)
 				pos_check = true

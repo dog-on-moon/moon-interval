@@ -2,8 +2,7 @@
 extends GraphEdit
 class_name GraphEdit2
 
-var undo_redo: EditorUndoRedoManager:
-	get: return GraphEdit2Plugin.undo_redo
+static var undo_redo: Object
 
 var _resource_ref: WeakRef
 
@@ -103,7 +102,7 @@ func _copy_nodes_request():
 	var res_to_copy = {}
 	for node in selected_elements:
 		if node.resource.graph_can_be_copied():
-			res_to_copy[node.resource] = node.resource.duplicate()
+			res_to_copy[node.resource] = node.resource.duplicate_deep(Resource.DEEP_DUPLICATE_NONE)
 	
 	## Determine the connections to be copied.
 	for c in resource.connections:
@@ -146,7 +145,7 @@ func _paste_nodes_request(top_left_paste_pos: Vector2):
 	## Create new clipboard.
 	var new_clipboard := {}
 	for resource in element_clipboard:
-		var new_res = resource.duplicate()
+		var new_res = resource.duplicate_deep(Resource.DEEP_DUPLICATE_NONE)
 		new_clipboard[new_res] = element_clipboard[resource]
 		for c in connection_clipboard:
 			if c[0] == resource:
@@ -167,7 +166,7 @@ func _duplicate_nodes_request():
 	for node in selected_elements.duplicate():
 		var res: Resource = node.resource
 		var idx: int = resource.resources.find(res)
-		var res_dupe := res.duplicate()
+		var res_dupe := res.duplicate_deep(Resource.DEEP_DUPLICATE_NONE)
 		add_resource(res_dupe, node.position_offset)
 		node.set_selected(false)
 		resource_to_element[res_dupe].set_selected(true)
@@ -175,7 +174,7 @@ func _duplicate_nodes_request():
 func _end_node_move():
 	assert(resource)
 	for node in active_elements:
-		var node_pos: Vector2 = resource.positions[node.resource]
+		var node_pos: Vector2 = resource.get_resource_position(node.resource)
 		var target_pos := node.position_offset + scroll_offset
 		resource.move_resource(node.resource, target_pos)
 		# TODO - this undo is super broken and idk why
@@ -213,7 +212,7 @@ func remove_resource(resource: Resource):
 	assert(self.resource)
 	undo_redo.create_action("Delete GraphElement(s) %s" % [get_tree().get_frame()], UndoRedo.MERGE_ALL)
 	undo_redo.add_do_method(self.resource, &"remove_resource", resource)
-	undo_redo.add_undo_method(self.resource, &"add_resource", resource, self.resource.positions[resource])
+	undo_redo.add_undo_method(self.resource, &"add_resource", resource, self.resource.get_resource_position(resource))
 	undo_redo.commit_action()
 
 ## Refreshes the state of the GraphEdit.
@@ -244,7 +243,7 @@ func _refresh():
 				active_elements.append(element)
 				add_child(element)
 				element.resource = res
-				element.position_offset = resource.positions[res]
+				element.position_offset = resource.get_resource_position(res)
 		
 		## Rebuild connections.
 		## Dictionary[Resource, Dict[int, Array[Resource]]]
@@ -266,8 +265,7 @@ func _validate_connections():
 		var to_resource: GraphNodeResource = c[2]
 		var to_port: int = c[3]
 		
-		if from_port >= from_resource.get_output_connections() \
-				or to_port >= to_resource.get_input_connections():
+		if from_port >= from_resource.get_output_connections() or to_port >= to_resource.get_input_connections():
 			resource.disconnect_resources(from_resource, from_port, to_resource, to_port)
 
 func _input(event: InputEvent) -> void:

@@ -5,10 +5,11 @@ class_name GraphEdit2Plugin
 ## By Mica
 ## Icons from GodotEngine
 
-static var undo_redo: EditorUndoRedoManager
+static var undo_redo: Object
 
 func _enter_tree():
 	undo_redo = get_undo_redo()
+	GraphEdit2.undo_redo = undo_redo
 	
 	add_custom_type("GraphEditResource", 	"Resource", preload("uid://dih7hadp53mog"), preload("uid://1o8lm8tmy1g3"))
 	add_custom_type("GraphElementResource", "Resource", preload("uid://cwuh4uhvd1dpo"), preload("uid://cxni0m345urn8"))
@@ -34,3 +35,4 @@ func _exit_tree():
 	remove_custom_type("GraphEditResource")
 	
 	undo_redo = null
+	GraphEdit2.undo_redo = null
