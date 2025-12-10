@@ -32,6 +32,9 @@ var duration: float = 0.0
 var time_remaining: float:
 	get: return max(duration - (tween.get_total_elapsed_time() / speed_scale), 0.0)
 
+var time_passed: float:
+	get: return tween.get_total_elapsed_time() / speed_scale
+
 ## The tween created and contained by this ActiveInterval
 var tween: Tween
 

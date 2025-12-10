@@ -28,6 +28,9 @@ class_name SetPropertyNode
 func as_interval() -> Interval:
 	return SetProperty.new(node, StringName(NodePath(property).get_subname(0)), value)
 
+func get_auto_name() -> String:
+	return "Set-%s-%s" % [node.name, NodePath(property).get_concatenated_subnames()]
+
 #region Editor API
 
 func _editor_property():
@@ -55,6 +58,12 @@ func _validate_property(p: Dictionary) -> void:
 	
 	if node and property and p.name == &"value":
 		p.type = typeof(node.get_indexed(NodePath(property)))
+		
+		if Engine.is_editor_hint():
+			if property.count(":") == 1:
+				var pn := LerpPropertyNode.get_object_property_dict(node, property.split(":")[1])
+				p['hint'] = pn.hint
+				p['hint_string'] = pn.hint_string
 	
 	if Engine.is_editor_hint():
 		if p.name == &"property":

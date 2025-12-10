@@ -28,7 +28,7 @@ func _get_interval(_owner: Node, _state: Dictionary) -> Interval:
 #region Base Editor Overrides
 ## The category that the event will belong to.
 static func get_graph_dropdown_category() -> String:
-	return "Control"
+	return "Routing"
 
 ## The title of the graph node for this Event.
 static func get_graph_node_title() -> String:

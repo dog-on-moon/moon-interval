@@ -5,13 +5,17 @@ class_name MultiEvent
 ## A MultiEvent contains multiple events and can be used for advanced, dynamic cutscenes.
 
 ## The editor data for this MultiEvent.
-@export_storage var editor_data: Resource = null
+@export_storage var editor_data: GraphEditResource = null
 
 ## When true, cycles are allowed in the Multievent.
 @export_storage var cycles := false
 
 ## When true, all started events will log their properties to the terminal.
 @export var debug := false
+
+## When true, all additional branches will be collapsed.
+## Used for sub-multievents.
+@export var collapse_branches := false
 
 ## Whether or not we have completed this MultiEvent.
 var completed := false
@@ -125,6 +129,8 @@ func _get_output_dict() -> Dictionary:
 func get_branch_names() -> Array:
 	var base_names := super()
 	
+	if collapse_branches: return base_names
+	
 	## Iterate over each available output port.
 	var output_dict := _get_output_dict()
 	for event: Event in output_dict:
@@ -139,6 +145,8 @@ func get_branch_names() -> Array:
 	return base_names
 
 func get_branch_index() -> int:
+	if collapse_branches: return 0
+	
 	## If we have a last event defined, review our output dictionary
 	## to determine what our true branch index should be.
 	if last_event:

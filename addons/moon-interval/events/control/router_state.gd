@@ -143,9 +143,7 @@ func _get_property_list() -> Array[Dictionary]:
 	return ret_list
 
 func _property_can_revert(property: StringName) -> bool:
-	return property.begins_with("state_name_") \
-		or property.begins_with("operation_") \
-		or property.begins_with("value_")
+	return property.begins_with("state_name_") or property.begins_with("operation_") or property.begins_with("value_")
 
 func _property_get_revert(property: StringName) -> Variant:
 	if property.begins_with("state_name_"):

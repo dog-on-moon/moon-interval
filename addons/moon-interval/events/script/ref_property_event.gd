@@ -53,9 +53,7 @@ func _get_interval(_owner: Node, _state: Dictionary) -> Interval:
 			(
 				Func.new(func (): node[property] = value)
 			) if not duration else (
-				LerpProperty.setup(node, property, duration, value)\
-				.values(initial_value if flags & 2 else null, flags & 1)\
-				.interp(ease, trans)
+				LerpProperty.setup(node, property, duration, value).values(initial_value if flags & 2 else null, flags & 1).interp(ease, trans)
 			),
 			Func.new(done.emit)
 		]))
@@ -129,7 +127,9 @@ func _property_can_revert(p: StringName) -> bool:
 
 func _property_get_revert(p: StringName) -> Variant:
 	match p:
-		&"value", &"initial_value":
+		&"value":
+			return null
+		&"initial_value":
 			return null
 		&"ease":
 			return Tween.EASE_IN_OUT

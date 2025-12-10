@@ -26,7 +26,15 @@ class_name LerpPropertyNode
 
 @export_category("Animation")
 @export_custom(PROPERTY_HINT_NONE, "") var start_value
+
+@export_tool_button("Set Start Value to Current") var _2 = func ():
+	start_value = node.get_indexed(NodePath(property))
+
 @export_custom(PROPERTY_HINT_NONE, "") var value
+
+@export_tool_button("Set Value to Current") var _1 = func ():
+	value = node.get_indexed(NodePath(property))
+
 @export_range(0.0, 8.0, 0.01, "or_greater") var duration := 0.0
 @export var ease := Tween.EASE_IN_OUT
 @export var trans := Tween.TRANS_LINEAR
@@ -43,16 +51,33 @@ func as_interval() -> Interval:
 	var p := get_parent()
 	if p is IntervalContainerNode:
 		if p.has_duration_override():
-			d = p.duration_override
+			d = p.get_duration_override()
 		if p.has_ease_override():
-			e = p.ease_override
+			e = p.get_ease_override()
 		if p.has_trans_override():
-			t = p.trans_override
-	return LerpProperty.new(node, NodePath(property), d, value, start_value if flags & 1 else null, flags & 2, e, t)
+			t = p.get_trans_override()
+	
+	var _lp := LerpProperty.new(node, NodePath(property), d, value, start_value if flags & 1 else null, flags & 2, e, t)
+	return _lp
 
 func reset():
 	if node and flags & 1:
 		node.set_indexed(NodePath(property), start_value)
+
+func globalize_transforms(local_transform_parent: Node, checknode: Node = null):
+	if not checknode or checknode == node:
+		if local_transform_parent is Node3D:
+			match property:
+				&":position":
+					value = local_transform_parent.to_global(value)
+					start_value = local_transform_parent.to_global(start_value)
+		elif local_transform_parent is Node2D:
+			pass
+		elif local_transform_parent is Control:
+			pass
+
+func get_auto_name() -> String:
+	return "Lerp-%s-%s" % [node.name, NodePath(property).get_concatenated_subnames()]
 
 #region Editor API
 
@@ -82,8 +107,14 @@ func _validate_property(p: Dictionary) -> void:
 	if node and property:
 		if p.name == &"start_value" or p.name == &"value":
 			p.type = typeof(node.get_indexed(NodePath(property)))
+			
+			if Engine.is_editor_hint():
+				if property.count(":") == 1:
+					var pn := get_object_property_dict(node, property.split(":")[1])
+					p['hint'] = pn.hint
+					p['hint_string'] = pn.hint_string
 	else:
-		if p.name == &"value" or p.name == &"start_value" or p.name == &"duration" or p.name == &"ease" or p.name == &"trans" or p.name == &"flags" or p.name == &"Animation":
+		if p.name == &"value" or p.name == &"start_value" or p.name == &"duration" or p.name == &"ease" or p.name == &"trans" or p.name == &"flags" or p.name == &"Animation" or p.name == &"_1" or p.name == &"_2":
 			p.usage = 0
 		return
 	
@@ -91,7 +122,7 @@ func _validate_property(p: Dictionary) -> void:
 		if p.name == &"property":
 			p.usage ^= PROPERTY_USAGE_READ_ONLY
 		
-		if p.name == &"start_value" and not flags & 1:
+		if (p.name == &"start_value" or p.name == &"_2") and not flags & 1:
 			p.usage ^= PROPERTY_USAGE_EDITOR
 
 func _property_can_revert(p: StringName) -> bool:
@@ -104,3 +135,9 @@ func _property_get_revert(p: StringName) -> Variant:
 		elif p == &"start_value":
 			return node.get_indexed(NodePath(property))
 	return null
+
+static func get_object_property_dict(obj: Object, prop_name: StringName) -> Dictionary:
+	for p in obj.get_property_list():
+		if p.name == prop_name:
+			return p
+	return {}

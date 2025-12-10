@@ -26,6 +26,9 @@ class_name PlayAudioNode
 func as_interval() -> Interval:
 	return PlayAudio.new(audio_event, volume_db, pitch_scale, positional_parent)
 
+func get_auto_name() -> String:
+	return "Audio-%s" % [audio_event.resource_path.get_file().split(".")[0]]
+
 func _get_configuration_warnings() -> PackedStringArray:
 	if audio_event.positional != AudioEvent.Positional.Off:
 		if not positional_parent:

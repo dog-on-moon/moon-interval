@@ -63,6 +63,10 @@ func interp(ease := Tween.EASE_IN_OUT, trans := Tween.TRANS_LINEAR) -> Projectil
 func get_duration() -> float:
 	return duration
 
+func replace_node(old: Node, new: Node):
+	if node_3d == old:
+		node_3d = new
+
 static func determine_end_velocity(DURATION: float, START: Vector3, END: Vector3, GRAVITY: float):
 	const THETA := 0.001
 	var t := inverse_lerp(0.0, DURATION, DURATION - THETA)

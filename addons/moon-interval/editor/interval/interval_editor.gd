@@ -237,9 +237,10 @@ func _rebuild_edit_buttons():
 	
 	for existing in ival_to_button.keys():
 		if existing not in curr_nodes:
-			var b := ival_to_button[existing]
-			event_boxes.remove_child(b)
-			b.queue_free()
+			if is_instance_valid(existing):
+				var b = ival_to_button[existing]
+				event_boxes.remove_child(b)
+				b.queue_free()
 			ival_to_button.erase(existing)
 	
 	for new in curr_nodes:
@@ -256,6 +257,9 @@ func _rebuild_edit_buttons():
 	var width := event_rect.size.x
 	var total_duration := icn.get_duration()
 	for ival in ival_to_button:
+		if not is_instance_valid(ival):
+			ival_to_button.erase(ival)
+			continue
 		var b := ival_to_button[ival]
 		
 		var start_time := icn.get_interval_node_start_time(ival)
@@ -280,6 +284,9 @@ func _rebuild_edit_buttons():
 	ordered_ins.sort_custom(_sort_ins_by_start.bind(in_to_start_time))
 	var ypos_end_dict := {}
 	for ival in ordered_ins:
+		if not is_instance_valid(ival):
+			ival_to_button.erase(ival)
+			continue
 		var b: Button = ival_to_button[ival]
 		var xpos_start := b.position.x
 		var xpos_end := b.position.x + b.size.x

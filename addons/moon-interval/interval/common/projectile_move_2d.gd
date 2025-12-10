@@ -56,6 +56,10 @@ static func calculate_pos(t: float, d: float, s: Vector2, e: Vector2, g: float) 
 func get_duration() -> float:
 	return duration
 
+func replace_node(old: Node, new: Node):
+	if node_2d == old:
+		node_2d = new
+
 static func determine_end_velocity(DURATION: float, START: Vector2, END: Vector2, GRAVITY: float):
 	const THETA := 0.001
 	var t := inverse_lerp(0.0, DURATION, DURATION - THETA)

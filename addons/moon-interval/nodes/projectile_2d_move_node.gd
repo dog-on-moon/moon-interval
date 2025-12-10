@@ -4,7 +4,7 @@ extends IntervalNode
 class_name Projectile2DMoveNode
 ## Moves a node as a projectile.
 
-@export var node: Node2D
+@export var node: Node
 @export var _start: Vector2
 @export var end: Vector2
 @export_range(0.0, 8.0, 0.01, "or_greater") var duration := 0.0
@@ -19,16 +19,19 @@ func as_interval() -> Interval:
 	var p := get_parent()
 	if p is IntervalContainerNode:
 		if p.has_duration_override():
-			d = p.duration_override
+			d = p.get_duration_override()
 		if p.has_ease_override():
-			e = p.ease_override
+			e = p.get_ease_override()
 		if p.has_trans_override():
-			t = p.trans_override
+			t = p.get_trans_override()
 	return Projectile2DMove.new(node, d, _start, end, gravity, e, t)
 
 func reset():
 	if node:
 		node.position = _start
+
+func get_auto_name() -> String:
+	return "Projectile2D-%s" % [node.name]
 
 static func _get_editor_category() -> String:
 	return "2D"

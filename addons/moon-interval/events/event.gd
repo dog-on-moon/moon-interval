@@ -15,10 +15,15 @@ class_name Event
 signal done()
 
 ## Returns the interval for this specific event.
-## Must be implemented by event subclasses.
+## Can be implemented by event subclasses.
 ## Remember to emit [signal done].
 func _get_interval(_owner: Node, _state: Dictionary) -> Interval:
-	return Func.new(done.emit)
+	return Func.new(_perform_event.bind(_owner, _state))
+
+## You can override this instead of [method _get_interval]
+## if your event is non-blocking.
+func _perform_event(_owner: Node, _state: Dictionary) -> void:
+	done.emit()
 
 #region Branching Logic
 ## Gets the names of the outgoing branches.

@@ -15,6 +15,8 @@ class_name FuncEvent
 			_script_button.visible = _editor_script_exists()
 @export var args: Array = []
 
+@export var await_result := false
+
 var _script_button: Button = null
 var _editor_owner: Node = null
 
@@ -22,10 +24,14 @@ func _get_interval(_owner: Node, _state: Dictionary) -> Interval:
 	var node: Node = _owner.get_node(node_path)
 	assert(function_name in node)
 	var callable: Callable = node[function_name]
-	return Sequence.new([
-		Func.new(callable.bindv(args)),
-		Func.new(done.emit)
-	])
+	return Func.new(_callback.bind(callable))
+
+func _callback(c: Callable):
+	if not await_result:
+		c.callv(args)
+	else:
+		await c.callv(args)
+	done.emit()
 
 #region Base Editor Overrides
 static func get_graph_dropdown_category() -> String:
@@ -35,7 +41,8 @@ static func get_graph_node_title() -> String:
 	return "Callable"
 
 func get_graph_node_description(_edit: GraphEdit, _element: GraphElement) -> String:
-	return ("%s.%s(%s)" % [
+	return ("%s%s.%s(%s)" % [
+		"" if not await_result else "await ",
 		get_node_path_string(_editor_owner, node_path), function_name,
 		str(args).trim_prefix('[').trim_suffix(']')]
 	) if _editor_script_exists() else ("[b][color=red]Invalid Callable")
@@ -56,6 +63,7 @@ func _editor_ready(_edit: GraphEdit, _element: GraphElement):
 
 #region Script Search Logic
 func _editor_script_exists() -> bool:
+	if not is_instance_valid(_editor_owner): return false
 	return _editor_find_node_script(
 		_editor_get_substring(),
 		_editor_get_target_node(node_path, _editor_owner)
@@ -74,14 +82,17 @@ static func _editor_make_script_button(node_func: Callable, substr_func: Callabl
 
 static func _editor_find_node_script(substr: String, node: Node, open := false) -> bool:
 	if node and node.get_script():
-		var lines: PackedStringArray = node.get_script().source_code.split('\n')
-		for i in lines.size():
-			var line: String = lines[i]
-			if line.find(substr) != -1:
-				if open:
-					Engine.get_singleton(&"EditorInterface").set_main_screen_editor("Script")
-					Engine.get_singleton(&"EditorInterface").edit_script(node.get_script(), i + 1)
-				return true
+		var check_script: Script = node.get_script()
+		while check_script != null:
+			var lines: PackedStringArray = check_script.source_code.split('\n')
+			for i in lines.size():
+				var line: String = lines[i]
+				if line.find(substr) != -1:
+					if open:
+						DogUtils.editor_interface.set_main_screen_editor("Script")
+						DogUtils.editor_interface.edit_script(check_script, i + 1)
+					return true
+			check_script = check_script.get_base_script()
 	return false
 
 static func _editor_get_target_node(np: NodePath, _owner: Node) -> Node:

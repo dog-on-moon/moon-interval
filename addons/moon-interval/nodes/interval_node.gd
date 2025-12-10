@@ -1,4 +1,5 @@
 @tool
+@abstract
 @icon("res://addons/moon-interval/icons/interval.png")
 extends Node
 class_name IntervalNode
@@ -17,6 +18,14 @@ class_name IntervalNode
 ## Determines if this interval is active.
 ## When inactive, it will not playback, or contribute to parent IntervalContainerNodes.
 @export var active := true
+
+@warning_ignore("unused_private_class_variable")
+@export_tool_button("Update Name", "Node") var _un = func ():
+	var _name := get_auto_name()
+	if _name:
+		name = get_auto_name()
+	else:
+		name = get_script().get_global_name()
 
 @export_category("Editor")
 
@@ -45,7 +54,7 @@ func _ready() -> void:
 ##
 ##	I HOPE YOU READ THIS!!!!!!!!!!!
 ##
-func start(_owner: Node = null, autofinish := false, loop := false) -> ActiveInterval:
+func start(_owner: Node = null, autofinish := false, loop := false, placeholders := {}) -> ActiveInterval:
 	if not active:
 		return null
 	if Engine.is_editor_hint() and not preview_in_editor:
@@ -53,28 +62,43 @@ func start(_owner: Node = null, autofinish := false, loop := false) -> ActiveInt
 	var ival: ActiveInterval
 	if not _owner:
 		_owner = self
+	for key in placeholders:
+		replace_node(key, placeholders[key])
 	ival = as_interval().start(self, autofinish)
+	for key in placeholders:
+		replace_node(placeholders[key], key)
 	if loop:
 		ival.set_loops()
 	if _owner == self:
 		_ival = ival
 	return ival
 
+func start_blocking(placeholders := {}) -> void:
+	var ival := start(self, false, false, placeholders)
+	await ival.finished
+
 func cancel_autoplay():
 	_ival = null
 
-# virtual
-func as_interval() -> Interval:
-	return null
+@abstract func as_interval() -> Interval
 
-# virtual, reset the animation on editor pre-save
+# can be overriden to reset the animation on editor pre-save, if relevant
 func reset():
 	pass
+
+func get_auto_name() -> String:
+	return ""
 
 func replace_node(old: Node, new: Node):
 	if &"node" in self:
 		if get(&"node") == old:
 			set(&"node", new)
+
+## Causes all transforms within the interval node tree to be globalized.
+## Uses a "checknode" to validate transformation globalization.
+## Useful for placeholders (converting a local placeholder into a global one).
+func globalize_transforms(local_transform_parent: Node, checknode: Node = null):
+	pass
 
 func get_duration() -> float:
 	return as_interval().get_duration()
@@ -99,7 +123,9 @@ func _validate_property(property: Dictionary) -> void:
 		if is_instance_of(p, IntervalContainerNode):
 			var pp: IntervalContainerNode = p
 			match property.name:
-				&"autoplay", &"looping":
+				&"autoplay":
+					property.usage ^= PROPERTY_USAGE_READ_ONLY
+				&"looping":
 					property.usage ^= PROPERTY_USAGE_READ_ONLY
 				&"duration":
 					if pp.has_duration_override():

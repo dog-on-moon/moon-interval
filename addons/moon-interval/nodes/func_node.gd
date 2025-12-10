@@ -34,6 +34,9 @@ func as_interval() -> Interval:
 	var f: Callable = node[function]
 	return Func.new(f.bindv(arguments))
 
+func get_auto_name() -> String:
+	return "Func-%s-%s" % [node.name, function]
+
 #region Editor API
 
 func _editor_callback():

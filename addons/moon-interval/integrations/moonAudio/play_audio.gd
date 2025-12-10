@@ -1,4 +1,4 @@
-@icon("res://addons/intervals/icons/interval.png")
+@icon("res://addons/moon-interval/icons/interval.png")
 extends Interval
 class_name PlayAudio
 ## An Interval audio event call.

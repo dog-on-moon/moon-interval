@@ -4,7 +4,15 @@ class_name RefFuncEvent
 ## Calls a function on a node stored in state.
 
 @export var node_name_in_state := &""
-@export var use_indexing := false
+
+## If the reference stored in State is an array, then you can reference
+## a specific node to call the function name on with an index.
+## Otherwise, the function will be called on every node in the inventory.
+@export var use_indexing := false:
+	set(x):
+		use_indexing = x
+		notify_property_list_changed()
+
 @export var node_index := 0
 @export var function_name: String = ""
 @export var args: Array = []
@@ -23,8 +31,12 @@ func _get_interval(_owner: Node, _state: Dictionary) -> Interval:
 				nodes.append(value)
 			elif value is Array:
 				nodes.append_array(value)
+			elif value is NodePath:
+				nodes.append(_state['EventPlayer'].get_node(value))
 		else:
 			nodes.append_array(value)
+	elif value is NodePath:
+		nodes.append(_state['EventPlayer'].get_node(value))
 	else:
 		assert(false)
 	
@@ -73,3 +85,9 @@ func get_graph_node_description(_edit: GraphEdit, _element: GraphElement) -> Str
 static func get_graph_node_color() -> Color:
 	return FuncEvent.get_graph_node_color()
 #endregion
+
+func _validate_property(property: Dictionary) -> void:
+	if not Engine.is_editor_hint(): return
+	if property.name == &"node_index":
+		if not use_indexing:
+			property.usage ^= PROPERTY_USAGE_EDITOR

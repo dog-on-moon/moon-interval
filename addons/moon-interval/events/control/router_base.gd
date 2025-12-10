@@ -34,7 +34,7 @@ func get_branch_index() -> int:
 
 #region Base Editor Overrides
 static func get_graph_dropdown_category() -> String:
-	return "Control"
+	return "Routing"
 
 static func get_graph_node_color() -> Color:
 	return Color.CORNFLOWER_BLUE

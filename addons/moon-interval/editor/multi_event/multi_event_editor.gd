@@ -2,6 +2,8 @@
 extends VSplitContainer
 ## The editor for MultiEvents.
 
+const WARNING_FILESYSTEM := "WARNING: Root MultiEvent is not saved to filesystem."
+
 signal request_reload
 
 const MultiEventGraphEdit = preload("uid://ca8nlkbok27c4")
@@ -101,6 +103,7 @@ func update():
 			event_name_edit.text = multi_event.resource_name
 		if event_name_edit.placeholder_text != multi_event.to_string():
 			event_name_edit.placeholder_text = multi_event.to_string()
+	update_warning()
 
 func _get_state():
 	return {
@@ -117,3 +120,17 @@ func _set_state(d: Dictionary):
 	await get_tree().process_frame
 	graph_edit.scroll_offset = d['so']
 	graph_edit.zoom = d['z']
+
+func update_warning():
+	var root_multievent: MultiEvent
+	if multi_event_stack:
+		root_multievent = multi_event_stack[0]
+	else:
+		root_multievent = multi_event
+	if not root_multievent:
+		return
+	
+	if not (root_multievent.resource_path and (root_multievent.resource_path.ends_with(".tres") or root_multievent.resource_path.ends_with(".res"))):
+		warning_spacing.text = WARNING_FILESYSTEM
+	else:
+		warning_spacing.text = ""
