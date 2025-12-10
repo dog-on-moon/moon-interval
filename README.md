@@ -2,7 +2,7 @@
 
 # 🌙 moon-interval - see more: [moonSuite](https://dog-game.xyz/tools/)
 
-moon-interval is an animation plugin for Godot 4.4 designed to supplement both Tweens and AnimationPlayer by providing powerful, dynamic alternatives.
+moon-interval is an animation plugin for Godot 4.5 designed to supplement both Tweens and AnimationPlayer by providing powerful, dynamic alternatives.
 This plugin is created based on what I felt was lacking from Godot in regards to efficient animation development, and I hope it will serve your purposes too.
 
 The plugin features three separate, powerful libraries for animations:
@@ -110,7 +110,7 @@ The Godot project also comes with a handful of demos.
 
 ## Installation
 
-This repository contains the plugin for v4.4. Copy the contents of the `addons` folder into the `addons` folder in your own Godot project. Both `moon-interval` and `graphedit2` are required. Be sure to enable both plugins from Project Settings.
+This repository contains the plugin for v4.5. Copy the contents of the `addons` folder into the `addons` folder in your own Godot project. Both `moon-interval` and `graphedit2` are required. Be sure to enable both plugins from Project Settings.
 
 For v4.2.2 support, please install the repository from [vabrador's fork.](https://github.com/vabrador/moon-interval/tree/backport-4.2)
 
